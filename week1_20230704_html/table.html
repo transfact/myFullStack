@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table tags</title>
+</head>
+<body>
+    <table border="1" align="center" bgcolor="yellow" bordercolor="blue" cellspacing="0" cellpadding="10" width="100%">
+        <!-- table(부모)->tr->th,td -->
+        <thead>        
+            <tr>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>이메일</th>
+                <th>사진</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- colspan을 추가하면 밀려나게 되고,사진이 밖으로 나간다. -->
+                <!-- <th colspan="2">이yy</th>  span으로 ㄱ자나 ㄴ를 만들 수는 없다. -->
+                <th>이yy</th>
+                <th>01011111111</th>
+                <th>xxxx@xxxx.com</th>
+                <th><img src="./cafe.png" width="100" height="100"></th>
+            </tr>
+            <tr>
+                <th>이xx</th>
+                <th>01022222222</th>
+                <th>xxxx@xxxx.com</th>
+                <th><img src="./image/dog.jpg" width="100" height="100"></th>
+            </tr>
+            <tr>
+                <th rowspan="2">xx</th>
+                <th>xx</th>
+                <th>xx</th>
+                <th>xx</th>
+            </tr>
+            <tr>
+                <th colspan="3">xx</th>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</body>
+</html>

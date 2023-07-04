@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input 태그</title>
+</head>
+<body>
+    <div>사용자에게 값을 입력받을 때 사용</div>
+    <h2> Text Type </h2>
+    <!-- placeholder 안드로이드 스튜디오의 hint -->
+    <input type="text" name="이름" placeholder="이름을 입력해주세요" />
+    <!-- name속성 통해 백엔드에 정보 전달   -->
+    <input type="text" name="번호" placeholder="번호를 입력해주세요" />
+    <!-- 버튼에서는 버튼의 정보를 전달하지 않아 굳이 번호를 전달 안해도 된다. value=값을 미리 입력해두는 것 -->
+
+    <h2> Button Type</h2>
+    <input type="button"  value="제출" />
+    <button type="submit"> 제출</button>
+
+    <h2> Password Type</h2>
+    <input type="password"/>
+
+    <h2> CheckBox Type</h2>
+    <!-- value랑 값이 달라도 됨 name끼리 묶어줌. -->
+    <input type="checkbox" name="hobby" value="야구" />야구
+    <input type="checkbox" name="hobby" value="축구" />축구
+    <input type="checkbox" name="hobby" value="게임"/>게임
+    <input type="checkbox" name="hobby" value="꿀잠"/>꿀잠
+    <input type="checkbox" name="hobby" value="독서"/>독서
+
+
+    <h2> Radio Type</h2>
+    <!-- 안드로이드의 radiobox name끼리 묶어줌. -->
+    <!-- label tag? 이런식으로 바꾸면 글자를 눌러도 체크가 됨-->
+    <input type="radio" name="gender" value="남자" id="남자" /><label for="남자">남자</label>
+    <input type="radio" name="gender" value="여자" id="여자" checked/><label for="여자">여자</label>
+
+    <h2> Radio2 Type</h2>
+    <!-- 안드로이드의 radiobox name끼리 묶어줌. -->
+    <input type="radio" name="favorite game" value="fifa" />피파
+    <input type="radio" name="favorite game" value="ma9ma9" />마구마구
+    <input type="radio" name="favorite game" value="LOL" />롤
+
+    <h2> Date Type</h2>
+    <input type="datetime-local" name="birth-time" />
+
+    <h2> select Tag</h2>
+    <!-- 옵션중에 하나 선택 name은 option에만 넣는다 비슷한 옵션 readonly -->
+    
+    <select name="select_name">
+        <optgroup label="opt1_3">
+            <option value="opt1" selected>option 1</option>
+            <option value="opt2" disabled >option 2</option>
+            <option value="opt3">option 3</option>
+        </optgroup>
+        <optgroup label="opt4_6">
+            <option value="opt4">option 4</option>
+            <option value="opt5">option 5</option>
+            <option value="opt6">option 6</option>
+        </optgroup>    
+    </select>
+
+</body>
+</html>

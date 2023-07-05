@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myFirstCSS</title>
+    <!-- 링크 형식... 수업은 내장으로 진행 -->
+    <!-- <link rel="stylesheet" href="./css/230705_css.css"> -->
+    <!-- 내부 스타일 정의  -->
+    <style>
+        /* .알파벳은 main클래스가 된다. 태그가 아니며, 태그 class="~"를 찾아서 선택하는 것. */
+
+        .header {
+            font-size: 50px;
+        }
+        .aaa {
+            /* 100이 기본, 커질수록 글씨가 두꺼워짐, 900까지 */
+            font-weight: 900;
+            font-size: 20px;
+            width: 100px;
+            height: 100px;
+        }
+
+
+        div {
+            color: blue;
+            background-color: brown;
+        }
+    </style>
+    <!-- html은 head를 다 읽고 그 다음들을 읽는다 -->
+</head>
+<body>
+<!-- class를 여러개 적을 수 있다. -->
+    <h1 class="header aaa">css 불러오기</h1>
+    <!-- inline이 가장 우선 순위가 높음. -->
+    <div>안녕</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pseudo-class</title>
+    <style>
+        a:hover{
+            color: red;
+        }
+        a:active{
+            color: yellow;
+        }
+        a:visited{
+            color: greenyellow;
+        }
+        button{
+            color: #797979;
+        }
+
+        button:hover{
+            background-color: blue;
+            color: white;
+        }
+
+        button:active{
+            background-color: yellow;
+            color: black;
+        }
+
+        input:focus {
+            background-color: orange;
+        }
+
+        div > .name-input:focus{
+            background-color: yellow;
+        }
+        /* first-child가 span이라면 color를 빨강으로 바꾼다! */
+        .fruits span:first-child{
+            color: red;
+        }
+
+        .fruits h3:last-child{
+            color:red;
+        }
+        /* nth-child는 1부터 시작임 */
+        .fruits *:nth-child(2){
+            color:green
+        }
+        /* n은 0부터 시작함 */
+
+        .fruits *:nth-child(2n+1){
+            font-size: 30pt;
+        }
+
+        /* 부정선택자 */
+
+        .fruits *:not(span){
+            background-color: aqua;
+        }
+
+        
+
+
+    </style>
+</head>
+<body>
+    <!-- a태그는 background를 선언해야만 나중에 변경가능! -->
+    <a href="https://www.naver.com">네이버</a>
+    <button type="button">제출</button>
+    <div>
+        <input class="name-input" type="text" name="name" placeholder="이름을 입력하세요"/>
+    </div>
+
+
+    <div class="fruits">
+        <span>딸기</span>
+        <span>수박</span>
+        <span>오렌지</span>
+        <p>망고</p>
+        <h3>사과</h3>
+
+    </div>
+</body>
+</html>

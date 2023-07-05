@@ -58,8 +58,30 @@
         .fruits *:not(span){
             background-color: aqua;
         }
+        /* Pseudo-elements 가상 요소*/
+        .example::after{
+            /* content는 무조건 넣어야한다. */
+            content : "  >  ";
+        }
+        /* . + 윈도우키 => 이모지단축키 */
+        .example::before{
+            content : "❤";
+        }
+        /* 공백을 넣어서 띄어쓰기가 되도록 */
+        .box::before{
+            content: "택시 ";
+        }
+        .box::after{
+            content: " 빨리";
+        }
 
-        
+        [type=text] {
+            background-color: green;
+        }
+        #속성 
+        *:not([disabled]){
+            color: white;
+        }
 
 
     </style>
@@ -72,6 +94,7 @@
         <input class="name-input" type="text" name="name" placeholder="이름을 입력하세요"/>
     </div>
 
+    <div class="example">바로가기</div>
 
     <div class="fruits">
         <span>딸기</span>
@@ -79,7 +102,16 @@
         <span>오렌지</span>
         <p>망고</p>
         <h3>사과</h3>
-
     </div>
+
+    <div class="box">여기요!</div>
+
+    <input type="text" value="HEROpy">
+    <input type="password" value="1234">
+    <input type="text" value="ABCD" disabled>
+    
+    
+
+
 </body>
 </html>

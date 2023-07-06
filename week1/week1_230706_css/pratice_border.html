@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border</title>
+    <style>
+        :root {
+            --length :100px;
+        }
+
+        main > div {
+            width: var(--length);
+            height: var(--length);
+            background-color: white;
+        }
+
+        .border-box {
+            padding: 20px;
+            border: 15px solid red;
+            background-color: orange;
+            box-sizing: border-box;
+        }
+        .content-box {
+            padding: 20px;
+            border: 15px solid red;
+            background-color: orange;
+            box-sizing: content-box;
+        }
+
+
+
+        .box1 {
+            border-color: red purple yellow blue;
+            border-style: dashed dotted solid ridge;
+            border-width: 1px 5px 3px 7px;
+            border-radius: 10% 20% 30% 40%;
+        }
+        .box2 {
+            border-top: 1px dashed red;
+            border-right : 5px dotted purple;
+            border-bottom: 3px solid yellow;
+            border-left: 7px ridge blue;
+            border-radius: 40% 30% 20% 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="box1"></div>
+        <br>
+        <div class="box2"></div>
+        <br>
+        <div class="border-box">ABC</div>
+        <br>
+        <div class="content-box">ABC</div>
+        <br>
+    </main>
+</body>
+</html>

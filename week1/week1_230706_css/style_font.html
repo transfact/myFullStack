@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+         */
+        
+        @font-face {
+        font-family: 'TiquiTaca-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/TiquiTaca-Regular.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+        /* inlne요소->자신만 차지하는 요소! */
+        :root {
+            --hello : 500;
+            font-size : 24px;
+        }
+        div {
+            font-weight: var(--hello);
+        }
+        p {
+            font-weight: bolder;
+        }
+        main {
+            font-size: 20px;
+        }
+        /* 클래스 선언 */
+        .font-px {
+            /* pixel은 모니터해상도에 따라 크기가 결정 */
+            font-size: 20px;
+            /* line-height(행간) */
+            line-height: 2;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .font-em {
+            /* 가까운 상위 요소(16px)의 1.5배 */
+            font-size: 1.5em;
+            font-family: "TiquiTaca-Regular", 'sans-serif';
+        }
+        .font-rem {
+            /* 가장 상위 요소의 font-size를 기준으로 1.5배 */
+            font-size: 1.5rem;
+            font-family: 'Noto Sans KR', sans-serif;
+            /* 폰트마다 가진 weight가 다른데, 없으면 가장 가까운 것으로 대체가 되니 확인필 */
+            font-weight: 900;
+        }
+        .font-per {
+            font-size: 100%;
+            /* 색상, rbg, rbga 코드 생성 */
+            color : #ff0000;
+            /* text-align= 정렬, main에 넣어서 전부 정렬하는 것도 가능. */
+            text-align: center;
+            /* text-decoration 줄긋기 */
+            text-decoration: line-through;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        /* div는 display값이 block이며, span은 inline이다 */
+
+        /* 블록안에다가 inline요소를 넣는 것을 권장(왜 그런지 심심하면 찾아보자) */
+        /* inline은 마진을 안먹는다. */
+        .inline-block {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="font-px">안녕하세요!</div>
+        <div class="font-per">안녕하세요!</div>
+        <div class="font-em">Hello!</div>
+        <div class="font-rem">안녕하세요!</div>
+        <a>no text-decoration</a>
+        <div style="background-color: red; width: 100px;">aaa</div>
+        <div class="inline-block" style="background-color: yellow; width: 100px;">bbb</div>
+        <div class="inline-block" style="background-color: blue; width: 100px;">ccc</div>
+    </main>
+</body>
+</html>

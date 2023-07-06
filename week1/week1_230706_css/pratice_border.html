@@ -20,16 +20,21 @@
             border: 15px solid red;
             background-color: orange;
             box-sizing: border-box;
+            text-align: center;
+            /* 투명도 */
+            opacity: 0.5;
         }
         .content-box {
             padding: 20px;
             border: 15px solid red;
             background-color: orange;
             box-sizing: content-box;
+            text-align: center;
+            line-height: var(--length);
         }
-
-
-
+        .content-box:hover {
+            opacity: 0.7;
+        }
         .box1 {
             border-color: red purple yellow blue;
             border-style: dashed dotted solid ridge;
@@ -43,6 +48,23 @@
             border-left: 7px ridge blue;
             border-radius: 40% 30% 20% 10%;
         }
+
+        .outer-box {
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            background-color: blue;
+        }
+        .inner-box{
+            background-color: yellow;
+            width: 400px;
+            height: 100px;
+        }
+
+
+        
+
+        
     </style>
 </head>
 
@@ -52,10 +74,15 @@
         <br>
         <div class="box2"></div>
         <br>
-        <div class="border-box">ABC</div>
+        <!-- div하나 더 만들어서 중앙정렬? -->
+        <div class="border-box">12</div>
         <br>
-        <div class="content-box">ABC</div>
+        <div class="content-box">content</div>
         <br>
+        <div class="outer-box" > 
+            <div class="inner-box"></div>
+        </div>
+
     </main>
 </body>
 </html>

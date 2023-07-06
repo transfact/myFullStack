@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 마진은 외부 여백 -->
+    <!-- margin과 padding 사이의 border(윤곽선) -->
+    <!-- padding은 내부 여백 -->
+    <!-- 마잔=0 이면 단위 안쓰는 것을 권장 -->
+    <style>
+        .body {
+            margin: 0;
+        }
+
+        .block {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-top: 100px;
+            margin-left: 100px;
+            /* margin: 위px 오른쪽px 아래px; 왼쪽px */
+            /* margin: 위아래px 왼쪽오른쪽px */
+            /* margin : 위아래왼쪽오른쪽px */
+            /* margin-auto 중앙정렬이 됨 */
+            /* padding:auto 기능없음! */
+            padding-top: 50px;
+            padding-left: 50px;
+        }
+        /* 검색해보니 inline 요소는 margin-top/button만 안먹힘 */
+        /* padding은 작동함 */
+        .inline {
+            margin-top: 100px;
+            margin-left: 100px;
+            background-color: blue;
+            color: white;
+            padding-top: 50px;
+            padding-left: 50px;
+
+
+        }
+        /* max-width, height를 둠으로서 크기를 제한할 수 있다. */
+        .mm-width {
+            background-color: red;
+            /* vw, vh 브라우저의 너비/길이(브라우저 크기가 달라짐에 따라 달라짐) */
+            width: calc(100vw - 600pxR);
+            height: 100px;
+            max-width: 1000px;
+            /* 최소값 이하로 브라우저를 줄일 수 없다. */
+            min-width: 300px; 
+            /* 가로/세로 정렬을 해보자! */
+            text-align: center;
+            /* 높이랑 같게한다. */
+            line-height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="block">안녕로봇1</div>
+    <span class="inline">싸이버거</span>
+
+    <div class="mm-width">hello</div>
+</body>
+</html>

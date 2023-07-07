@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform</title>
+    <style>
+        /* main > div{
+            transform: translate(10,20);
+        } */
+
+        .container {
+            position: relative;
+            background-color: antiquewhite;
+            width: 700px;
+            height: 500px;
+        }
+        img {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            transform: skewY(30deg) ;
+        }    
+        .img1 {
+            top : 100px;
+            left :100px;
+            z-index: 3;
+        }
+        .img2 {
+            top : 100px;
+            left :200px;
+            z-index: 2;
+        }
+        .img3 {
+            top : 100px;
+            left :300px;
+            
+            z-index: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <img class="img1" , src="../../1.png">
+            <img class="img2",  src="../../1.png">
+            <img class="img3" , src="../../1.png">
+        </div>
+
+    </main>
+
+</body>
+</html>

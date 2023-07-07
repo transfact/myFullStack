@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform</title>
+    <style>
+        /* main > div{
+            transform: translate(10,20);
+        } */
+
+        .box {
+            transition-property : all;
+            transition-delay: 0.5s;
+            transition-duration: 1s;
+            background-color: black;
+            color: white;
+            width: 100px;
+            height: 100px;
+            overflow: auto;
+
+        }
+        .box:hover{
+            width: 300px;
+            height: 300px;
+        }
+        img#translate:active {
+            transform: translate(500px,40px) ;
+        }
+        img#scaleX:active {
+            transform: scaleX(2) ;
+        }
+        img#rotate:active {
+            transform: rotateX(180deg) ;
+            /* 180도는 뒷면으로 뒤집은 것인데, 뒷면은 빈것이라고 생각하게 하는 것. */
+            backface-visibility: hidden;
+        }      
+        img#skew:active {
+            transform: skew(20deg,20deg) ;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">동해물과백두산이마르고닮도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세</div>
+    </div>
+</body>
+</html>

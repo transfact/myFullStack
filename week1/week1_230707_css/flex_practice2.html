@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex!</title>
+    <style>
+        /* 자식을 inline block으로 바꿔주는 느낌 */
+        /* wrap할때, height를 등분해서 넣어준다. */
+        .container{
+            width: 500px;
+            height: 500px;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row;
+            /* 뭉치게 만들기 */
+            flex-wrap: wrap;
+            /* 줄바꿈 없이 */
+            align-content : center;
+            /* 세로 정렬 */
+            align-items :center;
+            /* 가로 정렬 */
+            justify-content: center;
+
+        }
+        .container-1{
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items : center;
+            align-content : center;
+            justify-content: center;
+            /* justify-content: space-evenly; */
+        }
+
+        /* ,를 활용하면 동시에 {}를 적용가능. */
+        .container > div , .container-1 > div  {
+            width: 100px;
+            height: 100px;
+        }
+        .red {
+            background-color: red;
+        }
+        .orange {
+            background-color: orange;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .green {
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+ 
+        .indigo {
+            background-color: indigo;
+        }
+        .purple {
+            background-color: purple;
+        }
+        .aqua {
+            background-color: aqua;
+        }
+ 
+ 
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="red">  </div>
+            <div class="orange"> </div>
+            <div class="yellow"> </div>
+            <div class="green">  </div>
+            <div class="blue"> </div>
+            <div class="indigo"> </div>
+            <div class="purple">  </div>
+            <div class="aqua"> </div>
+        </div>
+        <br>
+        <div class="container-1" >
+            <div class="red">  </div>
+            <div class="orange"> </div>
+            <div class="yellow"> </div>
+            <div class="green">  </div>
+            <div class="blue"> </div>
+            <div class="indigo"> </div>
+            <div class="purple">  </div>
+            <div class="aqua"> </div>
+        </div>
+    </main>
+</body>
+</html>

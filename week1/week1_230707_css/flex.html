@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex!</title>
+    <style>
+        /* 자식을 inline block으로 바꿔주는 느낌 */
+        .container{
+            width: 900px;
+            display: flex;
+            /* 축 바꾸기 */
+            /* flex-direction: row-reverse; */
+            /* flex는 무조건 한줄로만 출력하려고 함(content가 찌그러질 수 있음) */
+            /* flex-wrap 설정으로 문제를 다룰 수 있음 */
+            flex-wrap: wrap;
+        }
+        .container > * {
+            width: 100px;
+            height: 100px;
+        }
+        .red {
+            background-color: red;
+        }
+        .orange {
+            background-color: orange;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+ 
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="red">  </div>
+            <div class="orange">  </div>
+            <div class="yellow">  </div>
+            <div class="red">  </div>
+            <div class="orange">  </div>
+            <div class="yellow">  </div>
+            <div class="red">  </div>
+            <div class="orange">  </div>
+            <div class="yellow">  </div>
+            <div class="red">  </div>
+            <div class="orange">  </div>
+            <div class="yellow">  </div>
+
+        </div>
+    </main>
+</body>
+</html>

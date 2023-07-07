@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zidx</title>
+    <!-- 기본 position : static -->
+    <!-- relative : 자기 자신을 기준으로 position이동(다른 요소 신경 x) -->
+    <style>
+        .main {
+            display: inline-block;
+        }
+        div.item {
+            width: 100px;
+            height : 100px;
+            position: absolute;
+        }
+        .container {
+            background-color: antiquewhite;
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        /* right top, left, bottom 모두 그곳을 기준으로 x만큼 움직인다는 뜻이다. */
+        .box1 {
+            background-color: red;
+        }
+        .box2 {
+            background-color: green;
+            top : 30px;
+            left : 30px;
+        }
+        .box3 {
+            background-color: blue;
+            top : 60px;
+            left : 60px;
+        }
+        .zidx-1 {
+            z-index: 1;
+        }
+        .zidx-2 {
+            z-index: 2;
+        }
+        .zidx-3 {
+            z-index: 3;
+        }
+      
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="item box1">1</div>
+            <div class="item box2">2</div>
+            <div class="item box3">3</div>
+        </div>
+
+        <div class="container">
+            <div class="item box1 zidx-3">1</div>
+            <div class="item box2 zidx-1">2</div>
+            <div class="item box3 zidx-2">3</div>
+        </div>
+
+
+    </main>
+</body>
+</html>

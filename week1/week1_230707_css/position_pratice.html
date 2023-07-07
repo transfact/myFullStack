@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+    <!-- 기본 position : static -->
+    <!-- relative : 자기 자신을 기준으로 position이동(다른 요소 신경 x) -->
+    <style>
+        div.item {
+            width: 100px;
+            height : 100px;
+            background-color: red;
+        }
+        .container {
+            background-color: antiquewhite;
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        /* right top, left, bottom 모두 그곳을 기준으로 x만큼 움직인다는 뜻이다. */
+        .relative-box {
+            position: relative;
+            left :50px;
+            top :30px;
+        }
+        .abs-box {
+            position: absolute;
+            right :30px;
+            bottom: 100px;
+        }
+        .fixed-box {
+            position: fixed;
+            right: 100px;
+            top : 100px;
+        }
+      
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="item relative-box">relative</div>
+            <div class="item abs-box">abs</div>
+        </div>
+        <div class="item fixed-box">fixed</div>
+
+    </main>
+</body>
+</html>

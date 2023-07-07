@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zidx-bug</title>
+    <!-- 기본 position : static -->
+    <!-- relative : 자기 자신을 기준으로 position이동(다른 요소 신경 x) -->
+    <style>
+
+        .container {
+            display: inline-block;
+            background-color: white;
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .num-circle {
+            position : absolute;
+            background-color: brown;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .circle {
+            position : absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .head {
+            background-color: rgb(45, 23, 241);
+            top : 60px;
+            left : 60px;
+        }
+        .eye {
+            background-color: white;
+            width: 30px;
+            height: 30px;
+            top : 70px;
+            left : 70px;
+        }
+        .pupil {
+            background-color: black;
+            width: 15px;
+            height: 15px;
+            top : 72px;
+            left : 72px;
+        }
+        .b1 {
+            background-color: rgb(27, 27, 45);
+            top : 100px;
+            left : 120px;
+        }
+        .b2 {
+            background-color: rgb(136, 136, 190);
+            top : 120px;
+            left : 180px;
+        }
+
+        .b3 {
+            background-color: rgb(0, 0, 87);
+            top : 120px;
+            left : 240px;
+        }
+
+        .b4 {
+            background-color: rgb(82, 82, 125);
+            top : 120px;
+            left : 300px;
+        }
+        .tree {
+            position : absolute;
+            top : 110px;
+            width :500px;
+            height: 200px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="num-circle">1</div>
+            <div class="circle head"> </div>
+            <div class="circle eye"> </div>
+            <div class="circle pupil"> </div>
+            <div class="circle b1"> </div>
+            <div class="circle b2"> </div>
+            <div class="circle b3"> </div>
+            <div class="circle b4"> </div>
+        </div>
+
+        <div class="container">
+            <div class="num-circle">2</div>
+            <div class="circle head"> </div>
+            <div class="circle eye"> </div>
+            <div class="circle pupil"> </div>
+            <div class="circle b1"> </div>
+            <div class="circle b2"> </div>
+            <div class="circle b3"> </div>
+            <img src="./pngwing.com.png" class="tree"  >
+            <div class="circle b4"> </div>
+
+        </div>
+
+    </main>
+</body>
+</html>

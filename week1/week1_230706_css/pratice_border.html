@@ -16,11 +16,20 @@
         }
 
         .border-box {
+            /* flex! */
+            /* flex-direction=row (기본값) 아래 코드는 row 기준임  */
+            
+            /* display: flex; */
+            /* 가로 가운데 정렬 */
+            /* justify-content: center;  */
+            /* align-itmes :세로 가운데 정렬 */
             padding: 20px;
             border: 15px solid red;
             background-color: orange;
             box-sizing: border-box;
             text-align: center;
+
+
             /* 투명도 */
             opacity: 0.5;
         }
@@ -60,7 +69,21 @@
             width: 400px;
             height: 100px;
         }
+        .flex-box {
+            background-color: aqua;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+        }
 
+        .child-box {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 10px;
+        }
 
         
 
@@ -75,14 +98,22 @@
         <div class="box2"></div>
         <br>
         <!-- div하나 더 만들어서 중앙정렬? -->
-        <div class="border-box">12</div>
+        <div class="border-box">border</div>
         <br>
         <div class="content-box">content</div>
         <br>
         <div class="outer-box" > 
-            <div class="inner-box"></div>
+            <div class="inner-box">123123</div>
         </div>
 
+        <div class="flex-box">
+            <div class="child-box"></div>
+            <div class="child-box"></div>
+            <div class="child-box"></div>
+        </div>
+
+
+        <div style="background-color: red; width: 100px; padding: 20px; height: auto;">aaaa aaaaa </div>
     </main>
 </body>
 </html>

@@ -32,26 +32,76 @@
     padding: 0 20px;
     margin-bottom: 50px;
   }
+
+
+
   
   /* TODO: header1 ~ 4까지 완성해주세요! 
       - 편의를 위해 header2 ~ 4는 display: none 처리를 해두었습니다.
       - 해당 header 작업할 때 display: none 코드를 지워서 작업하면 됩니다!
   */
   /* header1 */
+  .menus{
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+  }
+
   .header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header1 > ul > li {
+    margin-left: 30pt;
   }
   
   /* header2 */
   .header2 {
-    display: none;
+    line-height: 45pt;
   }
   
   /* header3 */
   .header3 {
-    display: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header3 > ul {
+    display: flex;
+  }
+  .header3 > ul > li {
+    margin-left: 30pt;
+    margin-right: 30pt;
   }
   
   /* header4 */
   .header4 {
-    display: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu-left{
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+  }
+  .menu-left > * {
+    margin-right: 30pt;
+  }
+  .menu-left > ul {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+  }
+  .menu-left > ul >li {
+    margin-right: 30pt;
+  }
+  .menu-right{
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+  }
+  .menu-right > * {
+    margin-left: 30pt;
   }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first animation</title>
+    <style>
+        .circle {
+            position : absolute;
+            border-radius: 50%;
+            background-color: pink;
+            height: 100pt;
+            width: 100pt;
+            animation: animation1 3s 6 linear;
+        }
+
+        @keyframes animation1 {
+            0% {
+                left :0pt;
+                top :0pt;
+            }
+            25% {
+                left :400pt;
+                top :0pt;
+            }
+            50% {
+                left :400pt;
+                top :400pt;
+            }
+            75% {
+                left :0pt;
+                top :400pt;
+            }
+
+            100% {
+                left :0pt;
+                top :0pt;
+            }
+        
+        }
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="circle"></div>
+    </main>
+    
+</body>
+</html>

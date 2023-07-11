@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            display: flex;
+            width: auto;
+        }
+        button {
+            margin-left: 50pt;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let num1 = Number(prompt("숫자를 2개까지 입력해주세요"));
+        let num2 = Number(prompt("숫자를 2개까지 입력해주세요"));
+        function add (){
+            alert(`더하기 : ${num1+num2}`)
+        }
+        function minus (){
+            alert(`빼기 : ${num1-num2}`)
+        }
+        function mul (){
+            alert(`곱하기 : ${num1*num2}`)
+        }
+        function div (){
+            alert(`나누기 : ${num1/num2}`)
+        }
+    </script>
+    <main>
+        <button onclick="add()">더하기</button>
+        <button onclick="minus()">빼기</button>
+        <button onclick="mul()">곱하기</button>
+        <button onclick="div()">나누기</button>
+    </main>
+
+    
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 선언
+        function sayHello(){
+            console.log("hello");
+        };
+        // 잉여함수 
+        //선언하기 전에 호출가능
+        let sayHello2 = function(){
+            console.log("hello2")
+        };
+
+        //람다도 있는듯
+        let sayHello3 = (var1) => {
+            console.log(`${var1}`)
+        }
+        //호이스팅 검색 필,  
+        sayHello();
+        sayHello2();
+        sayHello3("hello3")
+
+        // 매개변수(파라미터), 반환값
+        function sayHello4(para){
+            return `${para}`
+        };
+        console.log(sayHello4("파라미터"))  
+        //함수도 넣어지는 구나...
+        function sayHello5(func,str){
+            func(str)
+        };
+        sayHello5(sayHello3,"함수에 함수 넣기");
+        //함수형 언어...?
+        //함수리턴?
+        function sayHello6(para1,para2){
+            let para3= para1+ para2;
+            return (x,y) => {
+                console.log(x+y+para3)
+            }
+        }
+        sayHello6(3,4)(5,6) // 된다
+
+        let calc = (x,y) =>{
+            let sum = x+y;
+            let minus = x-y;
+            let mul = x*y;
+            let div = x/y;
+            //배열로  안하면 마지막 값만 반환하는 듯
+            return [sum,minus,mul,div]
+        }
+        console.log(calc(3,6))
+
+        let mul = (x,y) =>{
+            return x*y;
+        }
+        console.log(mul(5,6));
+
+        let square = (x) => {
+            console.log(x**2);
+        }
+        square(5);
+        function test() {
+            alert("안녕안녕안녕안녕")
+        }
+    </script>
+    
+
+    <button class="box" onclick="test();">안녕!</button>
+
+</body>
+</html>

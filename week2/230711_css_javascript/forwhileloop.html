@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arrays=[]
+        for(let i=0; i<10; i++){
+            arrays.push(i)
+        }
+        for(let i=0; i<10; i++){
+            console.log(arrays[i])
+        }
+        // length 활용
+        for(let i=0; i<arrays.length; i++){
+            console.log(arrays[i])
+        }
+        console.log("foreach");
+        arrays.forEach((num,idx,arr) => {
+            console.log(num,idx,arr);
+        });
+
+        let num =5;
+        let sum=0;
+        for(let i=1; i<=5; i++){
+            sum+=i
+        }
+        // for(let i=1; i<=5; i--){
+        //     sum+=i
+        // }  무한루프! 조심해서 짤것
+        console.log(sum);
+
+        let array13=[]
+        for(let i=0;i<=10000;i++){
+            if (i%2==1 && i%13==0){
+                array13.push(i)
+            }
+        }
+        console.log(array13)
+
+        let arraynum=[]
+        let long = 5000
+        for(let i=0;i<=long;i++){
+            if (i%2==1 && i%13==0){
+                arraynum.push(i)
+            }
+        }
+        console.log(arraynum)
+
+        let array133=[]
+        for(let i=13;i<=10000;i+=26){
+            array133.push(i)
+        }
+        console.log(array133)
+
+        for(let i=1; i<10; i++){
+            console.log(`${i}단`)
+            for(let j=1; j<10; j++){
+                console.log(`${i} * ${j} = ${i*j} `)
+            }
+        }
+        let fruits = ["사과", "바나나", "수박", "포도", "파인애플"];
+        // while 반복 !
+        // Nan?
+        let idx =0;
+        while(idx < fruits.length) { 
+            console.log(fruits[idx]); 
+            idx++;
+        }
+        //while은 break로 부셔서 나가는 경우가 많다
+        //while문은 반복 횟수를 모르면/지정할 수 없을 떄 사용...
+
+        while (true) {
+            let checker =prompt("아무값이나 입력")
+            if (true) break
+        }
+        console.log("arraynum")
+
+        let k = 2;
+        while(k<10) {
+            let j = 1;
+            while (j<10){
+                console.log(`${k}x${j} = ${k*j}`)
+                j++;
+            }
+            k++;
+        }
+        // 파이썬에서의 in과 비슷하게!
+        for (let fruit of fruits){
+            console.log(`${fruit}`) 
+        }
+        console.log("in?")
+        for (let idx in fruits){
+            console.log(`${idx}`) //idx가 반환된다. 
+        }
+        console.log(sum)
+        // 한번 실행하고 그 뒤는 while
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let isShow=true
+        if (isShow){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+
+        let num= "11";
+        // 자바 스크립트의 대소비교는, str을 num으로 형변환 하는가?
+
+        if ( num > 10){
+            console.log("10보다 큼 ")
+        } else if (num < 8) {
+            console.log("10보다 크고 8보다 작음 ")
+        }else{
+            console.log("8~10사이이거나, Number 할 수 있는 무언가가 아닌듯 ")
+        }
+
+        // 0을 그냥 넣으면 false가 된다.
+        if (0){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+
+        if (1){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+        if (2){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+        // 순서대로 [] , "" 
+        if ([]){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+        // 비어있다...  
+        if (""){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+
+        if ("" == 0){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+        // null, undefined
+    
+        if (null){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+
+        if (undefined){
+            console.log("조건문 TRUE")
+        }else{
+            console.log("조건문 FALSE")
+        }
+        let variable ="Lee"
+        console.log("switch 구문 시작")
+        switch(variable){
+            case "hello" : {
+                console.log("Hi")
+                break;
+            }
+            case "Lee" : {
+                console.log("Hi Lee")
+                break;
+            }
+            default : {
+                console.log("밥먹고 싶어...")
+                break;
+            }
+
+        }
+        console.log("3항 연산자 구문 시작")
+        let hunger = 101
+        hunger > 30 ? console.log("배 안고픔")  : console.log("배고픔");
+
+        let hungry = (hunger >=30 && hunger<=100) ? "배 안고픔" : "배고픔";
+     
+        console.log(hungry)
+
+        console.log("실습6")
+        let now = new Date().getHours();
+        // 00시는 오후인가 오전인가 ...
+        (now >= 0 && now <12) ? console.log("오전") :  console.log("오후")
+        
+        console.log((now >= 0 && now <12) ? "오전" : "오후");
+
+    </script>
+    
+</body>
+</html>

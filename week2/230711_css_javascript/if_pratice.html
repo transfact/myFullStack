@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let age=Number(prompt("나이를 입력해주세요"))
+        let gender = prompt("남성 혹은 여성으로 입력해주세요!(예상하지 못한 값 입력시 남성)")
+        let prefix;
+        gender == "여성" ? prefix = "여" : prefix = "남";
+
+        if (age>=20){
+            alert(`${gender} 성인`)
+        } else if (age >= 17){
+            alert(`고등학생`)
+        }else if (age >= 14){
+            alert(`중등 ${prefix}학생`)
+        }else if (age >= 8){
+            alert(`초등 ${prefix}학생`)
+        }else if (age >= 0){
+            alert(`${gender} 유아`)
+        }else{
+            alert(`아직 부모님 품속에...?`)
+        }
+    </script>
+    
+</body>
+</html>

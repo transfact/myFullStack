@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        main > div {
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <main id="removeall">
+        <div></div>
+        <button id="btn1" type="button" onclick="btn1clicked()">버튼1</button>
+    </main>
+    <script>
+        function btn1clicked(){
+            let blueblox =document.querySelector("main > div");
+            blueblox.setAttribute("style","background-color : red")
+        }
+
+        function createGreenBox(){
+            let createBox = document.createElement('div');
+            createBox.className='box green'
+            orangeBox.after(createBox);
+            orangeBox.before(createBox);
+
+        }
+        function removeBox(){
+            let orangebox=document.getElementById("removeall");
+            orangebox.remove();
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        main > div {
+            font-weight: 700;
+        }
+        main > div > #name {
+            width: 100pt;
+        }
+        main > div > #content {
+            width: 90%;
+        }
+        tr:first-child > td{
+            text-align: center;
+            font-weight: bold;
+            font-size: large;
+        }
+        .col1 {
+            width: 50pt;
+            height: 50pt;
+        }
+        .col2 {
+            width: 100pt;
+            height: 50pt;
+        }
+        .col3 {
+            width: 150pt;
+            height: 50pt;
+        }
+        .col4 {
+            width: 100pt;
+            height: 50pt;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div>작성자 : <input id="name" type="text"></div>
+        <div>내용 : <input id='content' type="text"></div>
+        <br>
+        <button type="button" onclick="requestForm()">작성</button>
+        <br>
+        <br>
+        <table id="table" border="1">
+            <tr>
+                <td class = "col1">번호</td>
+                <td class = "col2" >작성자</td>
+                <td class = "col3"> 내용</td>
+                <td class = "col4">작성일</td>
+            </tr>
+
+        </table>
+    </main>
+
+    <script>
+        var blogNum=1;
+        function requestForm(){
+            let name=document.getElementById("name").value
+            let content=document.getElementById("content").value
+            let time =new Date()
+            let table = document.getElementById("table")
+
+            const tr = document.createElement("tr")
+            const td1 = document.createElement("td")
+            const td2 = document.createElement("td")
+            const td3 = document.createElement("td")
+            const td4 = document.createElement("td")
+
+            tr.className=`tr${blogNum}`
+            td1.className="col1"
+            td2.className="col2"
+            td3.className="col3"
+            td4.className="col4"
+
+            td1.textContent=blogNum
+            td2.textContent=name
+            td3.textContent=content
+
+            let year = time.getFullYear();
+            let month =time.getMonth();
+            let date = time.getDate();
+            let hour = time.getHours();
+            let minutes = time.getMinutes();
+
+            td4.textContent=`${year}-${month}-${date} ${hour} : ${minutes}`
+
+
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+            tr.appendChild(td4)
+            table.append(tr)
+            reset()
+            blogNum++
+        }
+        function reset(){
+            document.getElementById("name").value=""
+            document.getElementById("content").value=""
+        }
+    </script>
+    
+</body>
+</html>

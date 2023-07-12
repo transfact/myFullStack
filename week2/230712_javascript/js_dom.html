@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #red {
+            transition: all 2s;
+        }
+        main {
+            position: relative;
+        }
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+
+
+        }
+        .left {
+            left : 100px;
+        }
+        .right {
+            left : 0;
+        }
+        .red {
+            background-color: red;
+        }
+        .orange {
+            top : 100px;
+            background-color: orange;
+        }
+        .blue {
+            top : 200px;
+            background-color: blue;
+        }
+        button {
+            position: absolute;
+            top :400px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="red" class="red box">빨간상자</div>
+        <div id ='orange' class="orange box"></div>
+        <div class="blue box"></div>
+        <button type="button" onclick="redToggle()">Blink Blink</button>
+    </main>
+    
+    <script>
+        // id로 찾기 (반환값 무조건 한개)
+        let redBoxById = document.getElementById("red")
+        console.log(redBoxById);
+        //class (반환 값 배열)
+        let boxes = document.getElementsByClassName("box");
+        console.log(boxes);
+        //tag (반환 값 배열)
+        let boxesByTag = document.getElementsByTagName("div")
+        console.log(boxesByTag);
+      //input (반환 값 배열)
+        let input =document.getElementsByName("id")
+        console.log(input);
+
+        // 선택자 (단한개만)
+        let boxesBySeletor = document.querySelector(".box")
+        console.log(boxesBySeletor);
+        // 선택자 (모두)
+        let boxesBySeletorAll = document.querySelectorAll("main > div:nth-child(2)")
+        console.log(boxesBySeletorAll);
+        //document의 마지막에 요소 작성
+        // document.write("<div class='box'>hellllo!</div>")
+        
+        let redBox = document.getElementById("red")
+        redBox.innerText = "<span>aaa</span>";
+        redBox.innerHTML = "<span>aaa</span>";
+        console.log(redBox.innerText); //tag전부 무시하고 text만
+        console.log(redBox.innerHTML); //tag포함한 string 가져옴
+        //차이?
+        // 속성 변경해준다 
+        // redBox.setAttribute("class","blue box");
+
+        let container = document.querySelector("main")
+        console.log("메인 태그  ",container)
+        console.log("자식 태그 0번  ",container.children[0])
+        console.log("자식 태그 마지막  ",container.children[container.children.length-1])
+
+        //부모는 한개 밖에 없다
+        console.log("부모태그 : ",redBox.parentNode)
+
+        //형제 선택하기, 바로 다음
+        console.log("바로 다음 형제",redBox.nextElementSibling)
+        console.log("바로 다음 형제",redBox.nextElementSibling)
+        //바로 전 형제 선택하기
+        let orangeBox = document.getElementById("orange")
+        console.log("바로 전 형제",orangeBox.previousElementSibling)
+        //요소 추가
+
+        let createBox = document.createElement('div');
+        createBox.className="box blue" ;
+        createBox.setAttribute("style","top : 600px")
+        container.append(createBox)
+
+        function createBlueBox(){
+            let createBox = document.createElement('div')
+            createBox.className="box blue"
+
+            document.write(createBox)
+        }
+        // append는 매갭ㄴ수로 문자열 노드객체 둘다가능
+        // appendchlid는 노드객체만 가능함.
+
+
+        console.log(redBox.className);
+        // redBox.className="box blue";
+        //토글함수 만들어줌
+        function redToggle(){
+            let redBox=document.getElementById("red")
+            // redBox.classList.toggle("red")
+            // 괄호안에 들어온 값이 있으면 삭제, 없으면 추가
+
+            if (redBox.classList.contains("red")){
+                // remove : 괄호안에 들어온 값을 리스트 삭제
+                redBox.classList.remove("red")
+                redBox.classList.add("left")
+                redBox.classList.remove("right")
+
+            }else if  (redBox.classList.contains("blue")){
+                redBox.classList.remove("blue")
+                redBox.classList.add("left")
+
+            }else {
+                // remove : 괄호안에 들어온 값을 리스트 추가
+                redBox.classList.add("red")
+                redBox.classList.remove("left")
+                redBox.classList.add("right")
+            }
+
+        }
+
+
+
+
+
+        let now = new Date();
+        console.log(now);
+    //now 활용
+        console.log(now.getFullYear());
+        console.log(now.getMonth()+1);
+        console.log(now.getDay()); //작성일 기준 수요일=3 반환
+        console.log(now.getDate()); //날짜 반환
+        console.log(now.getTime()); //기준 날짜로 부터 얼마나 멀어졌나를 반환
+
+        console.log(`${now.getFullYear()}-${now.getMonth() >= 10 ? now.getMonth() : "0"+now.getMonth()}-${now.getDate() >= 10 ? now.getDate() : "0"+now.getDate()}`)
+
+    //expired 활용
+        let expired = new Date ('2023-06-07');
+        console.log(expired);
+
+        console.log(expired.getFullYear());
+        console.log(expired.getMonth()+1);
+        console.log(expired.getDay()); //작성일 기준 수요일=3 반환
+        console.log(expired.getDate()); //날짜 반환
+        console.log(expired.getTime()); //기준 날짜로 부터 얼마나 멀어졌나를 반환
+
+
+        //math, random
+        console.log(Math.PI);
+        console.log(Math.E);
+        console.log(Math.min(2,5,13));
+        console.log(Math.max(2,5,8));
+        console.log(Math.random());
+        //낮춤(버림)
+        console.log(Math.floor(Math.random()*10));
+        //반올림
+        console.log(Math.round(7.9));
+        //올림
+        console.log(Math.ceil(7.9));
+        // a,b범위의 난수 생성
+        // random() * ( b - a ) + a 
+        
+
+
+
+
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getRandom() {
+            let randNum=Math.floor(Math.random()*100)
+            console.log(randNum)
+            return randNum
+        }
+        let intArray=[]
+        for(let i=0;i++;i<10){
+            intArray.push(getRandom())
+        }
+        intArray.forEach((data,idx) => {
+            console.log(idx,":",data)
+        }); 
+
+    </script>
+    
+</body>
+</html>

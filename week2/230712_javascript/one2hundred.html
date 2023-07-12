@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("heelo")
+        const arrays=[]
+        for(let i=1; i<=100; i++){
+            arrays.push(i)
+        }   
+        let sum1=0, sum2=0, sum3=0;
+        for(let i=0;i<100;i++){
+            sum1+=arrays[i];
+        }
+        console.log(sum1);
+        for(let num of arrays){
+            sum2+=num;
+        }
+        console.log(sum2);
+
+        arrays.forEach((value,idx) => {
+            sum3+=value
+        })
+        console.log(sum3);
+        
+    </script>
+</body>
+</html>

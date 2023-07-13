@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        h1 {
+            color: green;
+            margin-left:50pt;
+        }
+        .container {
+            display: flex;
+        }
+        table {
+            align-content: center;
+        }
+        td {
+            text-align: center;
+            width: 50pt;
+            height : 50pt;
+        }
+        .col1{
+            color: red;
+        }
+        .col7{
+            color: green;
+        }
+        .btn1{
+            margin-top: 5pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="inputContainer">
+            <div style="font-weight: 700;">날짜
+                <input type="text" id="date">
+            </div>
+            <div style="font-weight: 700;">내용
+                <input type="text" id="content">
+            </div>
+            <button type="button" id="btn1">작성</button>
+        </div>
+        <h1>2023년 7월</h1>
+    </div>
+
+    <table id="calendar" >
+        <tr>
+            <td class = "col1">일</td>
+            <td class = "col2">월</td>
+            <td class = "col3">화</td>
+            <td class = "col4">수</td>
+            <td class = "col5">목</td>
+            <td class = "col6">금</td>
+            <td class = "col7">토</td>
+        </tr>
+        <tr>
+            <td class = "col1"></td>
+            <td class = "col2"></td>
+            <td class = "col3"></td>
+            <td class = "col4"></td>
+            <td class = "col5"></td>
+            <td class = "col6"></td>
+            <td class = "col7">1</td>
+        </tr>
+        <tr>
+            <td class = "col1">2</td>
+            <td class = "col2">3</td>
+            <td class = "col3">4</td>
+            <td class = "col4">5</td>
+            <td class = "col5">6</td>
+            <td class = "col6">7</td>
+            <td class = "col7">8</td>
+        </tr>
+        <tr>
+            <td class = "col1">9</td>
+            <td class = "col2">10</td>
+            <td class = "col3">11</td>
+            <td class = "col4">12</td>
+            <td class = "col5">13</td>
+            <td class = "col6">14</td>
+            <td class = "col7">15</td>
+        </tr>
+        <tr>
+            <td class = "col1">16</td>
+            <td class = "col2">17</td>
+            <td class = "col3">18</td>
+            <td class = "col4">19</td>
+            <td class = "col5">20</td>
+            <td class = "col6">21</td>
+            <td class = "col7">22</td>
+        </tr>
+        <tr>
+            <td class = "col1">23</td>
+            <td class = "col2">24</td>
+            <td class = "col3">25</td>
+            <td class = "col4">26</td>
+            <td class = "col5">27</td>
+            <td class = "col6">28</td>
+            <td class = "col7">29</td>
+        </tr>
+        <tr>
+            <td class = "col1">30</td>
+            <td class = "col2">31</td>
+            <td class = "col3"></td>
+            <td class = "col4"></td>
+            <td class = "col5"></td>
+            <td class = "col6"></td>
+            <td class = "col7"></td>
+        </tr>
+
+
+
+    </table>
+
+    <script>
+        let previousDate ;
+            
+        $("td").on("click", function(){
+            let date= $(this).text()
+            $("#date").val(date)
+            previousDate=this
+            console.log($(this).text())
+        })
+        $("#btn1").on("click",function(){
+            alert("작성 완료!")
+            let content =  $("#content").val()
+            console.log(content)
+            $(previousDate).append("<br>")
+            $(previousDate).append(`${content}`)
+
+        })
+
+    </script>
+</body>
+</html>

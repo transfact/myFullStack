@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+    <style>
+        .container{
+            height: 2000pt;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <input type="id"/>
+    </div>
+    <button type="button">버튼1</button>
+
+
+    <script>
+        $("button").click(()=>{
+            alert("안녕안녕안녕")
+        })
+
+        $("input").keydown(function(e){
+            console.log(e.key==="Enter")
+        })
+        //마우스가 올려져 있는 동안
+        // $("button").hover(()=>{
+        //     console.log($(".container").text())
+        // })
+        //mouse가 올려간 한번 
+        // $("button").mouseover   (()=>{
+        //     console.log($(".container").text()+"mouseover")
+        // })
+        //페이지 로드 후 실행되는 함수
+        // $(function) = $(window).ready(function)
+        $(window).scroll(function(){
+            console.log("scorllllll ")
+        })
+        $(function(){
+            $(".container").append(`<h1 class= "red">안녕!</h1>`)
+            $(".container").append(`<h1>안녕</h1>`)
+        }) 
+
+    </script>
+    
+</body>
+</html>

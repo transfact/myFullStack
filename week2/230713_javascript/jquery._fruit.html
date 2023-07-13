@@ -48,7 +48,7 @@
 </head>
 <body>
     <main>
-        <img src="./img/apple" class="img" >
+        <img class="img" >
         <div id = 'divimg'>과일을 골라주세요</div>
         <div>
             <button type="button" id="btn1" onclick="fruitImg('apple')" >사과</button>
@@ -60,11 +60,14 @@
     <script>
         let img = $(".img")
         function fruitImg(fruit){
-            $("#divimg").style.opacity=0;
-            $("img").style.opacity=1;
+  
             console.log(fruit)
+            $("#divimg").attr("style","opacity : 0")
+            img.attr("style","opacity : 1")
             img.attr("src",`./img/${fruit}.jpeg`)
         }
+
+        
     </script>
 </body>
 </html>

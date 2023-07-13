@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name = "id" placeholder="id를 입력해주세요"/>
+    <input type="password" id = "password" placeholder="패스워드를 입력해주세요"/>
+    <input type="password" id = "password_check" placeholder="패스워드 확인"/>
+    <button type="button">버튼</button>
+
+
+    <div style="height: 100px; width: 100px; background-color: chartreuse; transition: 2s;"></div>
+
+
+    <script>
+        let button =document.querySelector("button");
+        let txtInput =document.querySelector("input")
+        console.log(button)
+
+        button.addEventListener("click",() => {
+            alert("clicked")
+        })
+
+        txtInput.addEventListener("focus",function(target){
+            // currentTarget으로 가는 법
+            //target.currentTarget
+
+            //style을 수정하면 css를 수정가능(한개 일때는 이거 사용해도 됨)
+            txtInput.style.background="black";
+            txtInput.style.color='white';
+        })
+        txtInput.addEventListener("blur",function(target){
+            // currentTarget으로 가는 법
+            //target.currentTarget
+
+            //style을 수정하면 css를 수정가능(한개 일때는 이거 사용해도 됨)
+            txtInput.style.background="yellow";
+        })
+
+        let txtInput2 =document.querySelectorAll("input")
+        for(let i=0; i<txtInput2.length; i++){
+            txtInput2[i].addEventListener("focus",(target)=>{
+
+                txtInput2[i].style.backgroundColor="yellow";
+                // target.currentTarget.style.backgroundColor = "black";
+            })
+        }
+        
+        let pwInput=document.getElementById("password");
+        console.log(pwInput)
+        pwInput.addEventListener("keyup", (e)=>{
+            console.log(e.key)
+            if (e.key == "Enter"){
+                alert("로그인!");
+            }
+
+        }) 
+        //웹페이지가 로드될때 실행시키는 코드
+        //요소가 다 로딩이 안될 수 있는데, 요소가 전부 로딩되고 난 뒤에 이벤트를 만들고 싶을 때 
+        window.addEventListener("load", ()=>{
+            let div1 = document.querySelector("div")
+
+            div1.style.marginLeft="100px"
+        })
+
+        //resize
+        window.addEventListener("resize",()=>{
+            //window사이즈 발생
+            console.log(window.innerWidth)
+        })
+
+        //change input이 뭔가 바뀌면
+
+        pwInput.addEventListener("change",(e)=>{
+            console.log(e.currentTarget)
+        })
+
+        document.getElementById("password_check").addEventListener("change",(e) =>{
+            if(e.currentTarget.value == pwInput.value){
+                alert("같다")
+            } else {
+                alert("다르다")
+            }
+        })
+
+
+    </script>
+    
+</body>
+</html>

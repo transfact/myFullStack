@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jquery 다운 -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+
+    <style>
+        main > div {
+            width: 100px;
+            height: 100px;
+            /* background-color: blue;
+            transition: linear 2s; */
+        }
+        .container {
+            width: 100px;
+        }
+        .red {
+            background-color: red;
+        }
+        .orange {
+            background-color: orange;
+        }
+
+    </style>
+
+</head>
+<body> 
+    <main>
+        <input type="text" name="id" id = "id"/>
+        <button type="button" onclick="getValue()">버튼</button>
+        <button id="btn2" type="button" >버튼</button>
+        <div>hello</div>
+
+        <button id="btn3" type="button" onclick="btn3()">버튼</button>
+        <div class="container">
+            <div class="red"></div>
+            <div class="orange"></div>
+            <div class="red"></div>
+            <div class="orange"></div>
+        </div>
+    </main>
+
+    <script>
+        function btn3 (){
+            console.log($(".container").children().removeClass("red"))
+            console.log($(".red").nextAll())
+            console.log($(".red").predAll("orange"))
+        }
+
+
+        function getValue(){
+            let val = $("#id").val();
+            console.log(val);
+            $("#id").val("");
+            $("main > div").text(val)
+            // 파싱해서 넣어줌
+                // $("div").html("<p>hi</p>")
+
+            // $("main > div").css("background-color","blue");
+            // $("main > div").css("border-radius","20px");
+
+            $('input').attr("placeholder","id를 입력해주세요.")
+            //append 함수
+            //테이블에서 기억하듯이, createelement 해서 진행했다.
+            //jqery에서는 단순하다는데
+            // $("main > div").append("<h1>제목1</h1>")
+
+            // $("main > div").prepend("<h1>제목1</h1>")
+            // //div의 앞
+            // $("main > div").after("<h1>제목1</h1>")
+            // //div의 뒤
+            // $("main > div").before("<h1>제목1</h1>")
+            // //안을 비운다
+            // $("main > div").empty()
+            // // 요소삭제
+            // $("main > div").remove()          
+
+            //클래스 추가
+            $("main > div").addClass("red")
+        
+        }
+        let button = $("#btn2")
+        
+        button.click(()=>{
+            // $("main > div").removeClass("red")
+            if($("main > div").hasClass("red")){
+                console.log("err")
+            }else{
+                console.log("no red")
+            }
+
+            $("main > div").toggleClass("red");
+        })
+
+
+        // jquery의 선택은 자동으로 여러개를 선택해준다.
+
+        //html 함수 innerHtml
+ 
+        //클래스 조작하기?
+        
+    </script>   
+    
+</body>
+</html>

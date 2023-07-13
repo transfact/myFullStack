@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jquery 다운 -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+    <style>
+        main {
+            position: relative;
+        }
+
+        img{
+            position: absolute;
+            left : 32.5%;
+            width: 400px;
+            height: 400px;
+            opacity: 0;
+            
+        }
+        #divimg {
+            position: absolute;
+            left : 32.5%;
+            top : 0;
+            text-align: center;
+            line-height: 400px;
+            font-weight: 700;
+            font-size: 30pt;
+            border: 1px solid red;
+            border-radius: 10%;
+            width: 400px;
+            height: 400px;
+            opacity: 1;
+        }
+        main > div {
+            display: flex;
+            position: absolute;
+            top : 410px;
+            left : 40%;
+            justify-content: center;
+        }
+        
+
+    </style>
+    
+</head>
+<body>
+    <main>
+        <img src="./img/apple" class="img" >
+        <div id = 'divimg'>과일을 골라주세요</div>
+        <div>
+            <button type="button" id="btn1" onclick="fruitImg('apple')" >사과</button>
+            <button type="button" id="btn2" onclick="fruitImg('banana')">바나나</button>
+            <button type="button" id="btn3" onclick="fruitImg('watermelon')" >수박</button>
+            <button type="button" id="btn4" onclick="fruitImg('berry')" >딸기</button>
+        </div>
+    </main>
+    <script>
+        let img = $(".img")
+        function fruitImg(fruit){
+            $("#divimg").style.opacity=0;
+            $("img").style.opacity=1;
+            console.log(fruit)
+            img.attr("src",`./img/${fruit}.jpeg`)
+        }
+    </script>
+</body>
+</html>

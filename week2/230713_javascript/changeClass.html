@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jquery 다운 -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+        .red{
+            background-color: red;
+        }
+        .orange{
+            background-color: orange;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .green{
+            background-color: green;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .indigo{
+            background-color: indigo;
+        }
+        .purple{
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="box red" onclick="classChange2()"></div>
+    </main>
+
+    <script>
+        let colorArray=["red","orange","yellow","green","blue","indigo","purple"]
+        let colorIdx = 1;
+        function classChange(){
+            let previousIdx= colorIdx!=0 ? colorIdx-1 : 6 
+            console.log(previousIdx)
+
+            $("main > div").removeClass(colorArray[previousIdx])
+            
+            $("main > div").addClass(colorArray[colorIdx])
+            colorIdx++;
+            colorIdx = colorIdx % 7
+
+        }
+        function classChange2(){
+            let currentClass = ($("main > div").attr("class")).split(" ")[1]
+            let currentColorIdx=  colorArray.indexOf(currentClass)
+            let nextIdx = currentColorIdx !=6 ? currentColorIdx+1 : 0 
+            console.log(currentClass)
+            $("main > div").removeClass(currentClass)   
+            $("main > div").addClass(colorArray[nextIdx])
+
+
+        }
+    </script>
+</body>
+</html>

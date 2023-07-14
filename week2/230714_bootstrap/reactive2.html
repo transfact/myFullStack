@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reactive</title>
+    <style>
+        body{background-color: antiquewhite;}
+        /* 미디어 유행 and 조건들... */
+        /* and ()을 breakpoint로 정한다 */
+        /* 유형 : screen, all, print, */
+        /* 크기 조건 max, max-width,/min-height
+            max-width : 오른쪽에 나온숫자 값 이하일 떄 적용하는 그래픽
+            min-width : width가 오른쪽 이상일때 적용하는 그래픽
+        */
+
+        @media screen and (min-width : 300px) {
+            body{
+                background-color: cornflowerblue;
+            }
+        }
+
+        @media screen and (min-width : 500px) {
+            body{
+                background-color: white;
+            }
+        }
+        /* 브라우저는 300px까지만 가능한듯? 개발자도구 키면 된다*/
+        @media screen and (min-width : 700px) {
+            body{
+                background-color: black;
+            }
+        }
+        /* 순서를 바꾸면, 덮여쓰여져서 안되니까, 순서를 맞춰서 하자 */
+    
+        .box {
+            background-color: green;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+
+</body>
+</html>

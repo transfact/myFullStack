@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/837ff3adc1.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --nav-height-lg: 100px;
+        --nav-height-sm: 60px;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+        header .inner {
+            display : flex ;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        header .inner .logo {
+        color: white;
+        padding: 5pt ;
+        text-align: center;
+        font-size: 30px;
+        background-color: lightblue;
+      }
+        header .inner .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb(211, 247, 247);
+        }
+
+        header .inner .menu li {
+            margin: 10pt 0;
+            font-weight: 700;
+        }
+        .logo > p {
+            display: none;
+    }
+      
+
+      /* 미디어 쿼리 작성 768px 이하일 때  */
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+        <div class="logo">
+          <i class="fa-solid fa-igloo"></i>
+        </div>
+        <ul class="menu">
+          <li>메뉴1</li>
+          <li>메뉴2</li>
+          <li>메뉴3</li>
+          <li>메뉴4</li>
+        </ul>
+        <!-- justify-content을 용이하게 하기 위해서 -->
+        <p></p>
+      </div>
+    </header>
+  </body>
+</html>

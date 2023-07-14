@@ -19,17 +19,28 @@
         }
         td {
             text-align: center;
+            /* top으로 정렬한다.     */
+            vertical-align: top;
             width: 50pt;
             height : 50pt;
         }
-        .col1{
+        /* .col1{
             color: red;
         }
         .col7{
             color: green;
-        }
+        } */
         .btn1{
             margin-top: 5pt;
+        }
+
+        /* col1이라는 방법으로 하긴 했는데  자바스크립트스럽지 못하다.*/
+        /* 테이블의, tr의 , td의 firstchild에 접근하는 코드를 만들면 쉽게 접근할 수 있다 . */
+        tr > td:first-child {
+            color: red;
+        }
+        tr> td:last-child {
+            color: green;
         }
     </style>
 </head>
@@ -120,7 +131,9 @@
         let previousDate ;
             
         $("td").on("click", function(){
-            let date= $(this).text()
+            // 이러면 span태그에는 띄어쓰기가 적용이 안되는데, text()로 가져올떄에는 띄어쓰기가 적용된다는 이상하고 기묘한 점 덕분에...
+            //text-align : center여서 그럴 수도 있지만 아무튼 date띄어쓰기content 이렇게 되서 split하면 된다는 이상하고 기묘한 이론 
+            let date= $(this).text().split(" ")[0]
             $("#date").val(date)
             previousDate=this
             console.log($(this).text())
@@ -130,7 +143,7 @@
             let content =  $("#content").val()
             console.log(content)
             $(previousDate).append("<br>")
-            $(previousDate).append(`${content}`)
+            $(previousDate).append(`<span> ${content}</span>`)
 
         })
 

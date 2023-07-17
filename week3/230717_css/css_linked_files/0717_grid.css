@@ -1,0 +1,92 @@
+.container {
+    display: grid;
+    height: 500px;
+    /* grid template colors : 가로줄 정의 */
+    /* 가로줄이 각각 100px씩 차지하는 grid */
+    /* repeat(3,200px) = 200px 200px 200px*/
+    /* repeat(x,1fr) x만큼 가로로 등분하겠다. */
+    /* grid-template-columns: repeat(3,1fr); */
+    /* grid-template-rows: repeat(3,200px); */
+
+    /* minmax(최소,최대) */
+    grid-template-columns: repeat(3,100px);
+    /* 칸의 높이를 200px로 하겠다. */
+    grid-template-rows: repeat(3,100px);
+    /* grid 사이 간격  */
+    row-gap: 20px;
+    column-gap: 20px;
+    /* row col gap 순 */
+    /* gap : 20px 20px; */
+
+    /* 가운데 정렬하겠다. */
+    justify-items: center;
+    align-items: center;
+    /* justify+align을 합쳐서, -item는 item요소가 존재하는 영역을 정렬  */
+    /* place-items: end end; */
+
+    /* 컨테이너의 위치를 정렬한다. (grid 전체를 옮긴다) */
+    justify-content: center;
+    align-content: center;
+
+
+}
+
+.container2{
+    display: grid;
+    /* height: 500pt; */
+    grid-template-columns: repeat(3,200px);
+    
+    grid-template-rows: repeat(2,200px);
+    /* place-items: center ; */
+    place-content: center; 
+
+    grid-template-areas:  
+    'header header header'
+    'nav main aside'
+    'footer footer footer' ;
+
+}
+.item{
+    width: auto;
+    height: auto;
+}
+.red {
+    /* 0부터 정렬함. order 권장 X(HTML과 헷갈림)  */
+    /* order : 1; */
+    /* 빨강 영역이 1-4까지 차지하여 orange가 밀림 */
+    background-color: red;
+    /* grid-column : 1 / 4;  */
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
+    /* grid-column 1에서 3칸을 합치겠다 */
+    /* grid-column: 1 / span 3; */
+    /* auto / span3도 가능 */
+    /* z-index: 1; */
+    grid-area: header;
+    
+}
+.orange {
+    grid-area: nav;
+    background-color: orange;
+    /* grid-row: auto / span 2 ; */
+}
+.yellow {
+    grid-area: main;
+    background-color: yellow;
+}
+.green {
+    grid-area: aside;
+    /* justify-self: center;
+    place-self: center; */
+    background-color: green;
+}
+.blue {
+    grid-area: footer;
+    background-color: blue;
+}
+.indigo {
+    background-color: indigo;
+}
+.purple {
+    background-color: purple;
+}

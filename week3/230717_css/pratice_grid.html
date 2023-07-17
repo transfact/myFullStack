@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --height-box : auto;
+            --grid-height : 100vh;
+        }
+        .body {
+            margin: 0;
+        }
+        .container {
+
+            display: grid;
+            height: var(--grid-height);
+            grid-template-columns: (6,auto);
+            grid-template-rows: (4,var(--height-box));
+            grid-template-areas:  
+            'head head head head head head'
+            'aside1 main1 main1 main1 main1 aside2'
+            'aside1 main2 main2 main3 main3 aside2'
+            'tail tail tail tail tail tail' ;
+        }
+
+        .box{
+            width: auto;
+   
+            color: black ;
+            background-color: black;
+            text-align: center;
+            height: var(--height-box);
+            line-height : calc(var(--grid-height) / 4 );
+
+            /* flex 써서 정렬해도 됨! */
+        }
+        .F94144 {
+            grid-area: head;
+            background-color: #F94144;
+        }
+        .F3722c {
+            grid-area: aside1;
+            background-color: #F3722c;
+            height : calc(var(--height-box) * 2); 
+            /* 얘는 왜 200px가 안먹니..? */
+            line-height : calc(var(--grid-height) / 2 );
+   
+        }
+        .F9C74F {
+            grid-area: main1;
+            background-color: #F9C74F;
+        }
+        ._43AA8B {
+            grid-area : aside2;
+            background-color: #43AA8B;
+            height : calc(var(--height-box) * 2);
+            /* line-height : calc(var(--height-box) * 2); */
+            line-height : calc(var(--grid-height) / 2 );
+        }
+        .F8961E {
+            grid-area: main2;
+            background-color: #F8961E;
+        }
+        ._90BE6D {
+            grid-area: main3;
+            background-color: #90BE6D;
+        }
+        ._4444FF {            
+            grid-area: tail;
+            background-color: #4444FF;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box F94144">#F94144</div>
+        <div class="box F3722c">#F3722c</div>
+        <div class="box F9C74F">#F9C74F</div>
+        <div class="box _43AA8B">#43AA8B</div>
+        <div class="box F8961E">#F8961E</div>
+        <div class="box _90BE6D">#90BE6D</div>
+        <div class="box _4444FF">#4444FF</div>
+
+    </div>
+    
+</body>
+</html>
+
+<!-- 
+body {
+    margin: 0;
+}
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-areas: 
+    'header header header header'
+    'aside1 section1 section1 aside2'
+    'aside1 section2 section3 aside2'
+    'footer footer footer footer'
+    ;
+}
+
+.item {
+    /* width: 100px;
+    height: 100px; */
+}
+
+.item1 {
+    background-color: #F94144;
+    /* grid-column: auto / span 4; */
+    grid-area: header;
+}
+
+.item2 {
+    background-color: #F3722c;
+    /* grid-row: auto / span 2; */
+    grid-area: aside1;
+}
+
+.item3 {
+    background-color: #F9C74F;
+    /* grid-column: auto / span 2; */
+    grid-area: section1;
+}
+
+.item4 {
+    background-color: #43AA8B;
+    /* grid-row: auto / span 2; */
+    grid-area: aside2;
+}
+
+.item5 {
+    background-color: #F8961E;
+    grid-area: section2;
+}
+
+.item6 {
+    background-color: #90BE6D;
+    grid-area: section3;
+}
+
+.item7 {
+    background-color: #4444FF;
+    /* grid-column: auto / span 4; */
+    grid-area: footer;
+}
+
+
+ -->

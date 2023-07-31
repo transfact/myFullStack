@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let product;
+        let price;
+        goMart();
+        pickDrink().then(()=>{
+            console.log(`상품명 : ${product},가격 : ${price}`)
+        });
+        function goMart(){
+            console.log('마트에 갔다')
+        }
+
+        function pickDrink(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                console.log("고민끝")
+                product="콜라"
+                price=2000;
+                resolve();
+            },3000)
+        })
+
+        }
+
+
+        function promise1(flag){
+            return new Promise(function(resolove,reject){
+                if (flag){
+                    resolove('promise 상태는 fulfilled!! then으로 연결')
+                }else{
+                    reject("promise->rejected")
+                }
+            })
+        }
+        promise1(true)
+            .then(function(result){
+            console.log(result);
+            })
+            .catch(function(err){
+                console.log(err)
+            })
+
+        function add(n1,n2){
+            return new Promise(function (resolve,reject){
+                setTimeout(function(){
+                    let result=n1+n2;
+                    resolve(result)
+                },1000)
+            })
+        }
+        function sub(n1){
+            return new Promise(function (resolve,reject){
+                setTimeout(function(){
+                    let result=n1-1;
+                    resolve(result)
+                },1000)
+            })
+        }
+
+        function mul(n1){
+            return new Promise(function (resolve,reject){
+                setTimeout(function(){
+                    let result=n1*2;
+                    resolve(result)
+                },1000)
+            })
+        }
+    
+        add(4,3).then(function(result){
+            console.log('1: ',result)
+            return mul(result)
+        }).then(function(result){
+            console.log('2: ',result)
+            return sub(result)
+        }).then(function(result){
+            console.log('2: ',result)
+        })
+    </script>
+</body>
+</html>

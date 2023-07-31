@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    function setBackground(color){
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+            document.body.style.backgroundColor=`${color}`;
+            resolve();
+        },1000)
+    })
+    }
+    
+    setBackground("red")
+        .then(()=>{
+            return setBackground("orange")
+        })
+        .then(()=>{
+            return setBackground("green")
+        })
+        .then(()=>{
+            return setBackground("blue")
+        })
+        .then(()=>{
+            return setBackground("purple")
+        })
+    </script>
+</body>
+</html>

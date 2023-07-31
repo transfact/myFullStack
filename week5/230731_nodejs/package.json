@@ -1,0 +1,11 @@
+{
+  "name": "230731_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "qwer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

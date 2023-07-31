@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 이 페이지를 실행했을 때 무슨 지옥이 날까?
+    let i=0;
+    //콜백 지옥 
+    for(let i =0; i<1000; i++){
+        // console.log(`${i}`)
+        // let funcInClosure = function(){
+        setTimeout(function () {
+            console.log(`checker`)
+            document.body.style.backgroundColor='red'
+            setTimeout(function () {
+            console.log(`checker2`)
+            document.body.style.backgroundColor='orange'
+                setTimeout(function () {
+                console.log(`checker3`)
+                document.body.style.backgroundColor='green'
+                    setTimeout(function () {
+                    console.log(`checker4`)
+                    document.body.style.backgroundColor='blue'
+                        setTimeout(function () {
+                            console.log(`checker5`)
+                            document.body.style.backgroundColor='purple'
+                        },1000)
+                    },1000)
+                },1000)
+            },1000)
+        },1000)
+        // }
+        // funcInClosure()
+    }
+    
+    for(i=1; i<100; i++){
+        setTimeout(function(){
+            document.write(i+"<br/>");
+        }, 1000);
+    }
+
+    for(i=1; i<30; i++){
+        let funcInClosure =function(x){
+            setTimeout(function(){
+            document.write(x+"<br/>");
+            // console.log(x)
+            }, 1000);}
+        funcInClosure(i);
+    }
+
+        // 안되는게 아니라, checker가 너무 빨리 바뀌고 있어서 background가 바뀌는게 안보이는 것
+     </script>   
+    
+</body>
+</html>

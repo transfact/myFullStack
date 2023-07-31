@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function call(name){
+            return new Promise(function (resolve,reject){
+            setTimeout(function(){
+                console.log(name);
+                resolve(name);
+            },1000)})
+        }
+        function back(){
+            return new Promise(function (resolve,reject){
+                setTimeout(function(){
+                    console.log('back');
+                    resolve('back');
+                },1000)})
+        }
+
+        function hell(){
+            return new Promise(function (resolve,reject){
+            setTimeout(function(){
+                resolve('callback hell');
+            },1000)})
+        }
+        // call을 받으면 kim을 콜에 보내준다
+        call('kim') 
+            .then(function(name){
+                //call의 실행이 끝나고, resolve에 넣은 name을 불러온다
+                console.log(name+" 반가워")
+                //back 실행
+                //back()을 지정안하면, call()이 오지 않을까?
+                return back();
+            })
+            .then(function(txt){
+                console.log(txt+" 을/를 실행했구나")
+                return hell();
+            })
+            .then(function(message){
+                console.log("여기는 : "+ message)    
+            })
+
+
+
+        // call('kim') 
+        //     .then(function(name){
+        //         console.log(name+" 반가워")
+        //         return back("back");})
+        //     .then(function (txt){
+        //         console.log(txt+" 을/를 실행했구나")
+        //         return hell("callback hell")
+        //     })
+        //     .then(function (message){
+        //             console.log("여기는 ",message)
+        //     })
+        // async function exec(){
+        //     let first = await call('kim')
+        //     console.log(first+" 반가워")
+        //     let second = await call("back")
+        //     console.log(second+" 을/를 실행했구나")
+        //     let thrid = await hell("back")
+        //     console.log("여기는 ",thrid)
+        // }
+        // exec();
+    </script>
+</body>
+</html>

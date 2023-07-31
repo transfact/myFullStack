@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let product;
+        let price;
+        // goMart();
+        // pickDrink().then(()=>{
+        //     console.log(`상품명 : ${product},가격 : ${price}`)
+        // });
+        function goMart(){
+            console.log('마트에 갔다')
+        }
+
+        function pickDrink(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                console.log("고민끝")
+                product="콜라"
+                price=2000;
+                resolve();
+            },3000)
+            })
+        }
+        function pay(){
+            console.log(product)
+            console.log(price)
+        }
+        async function exec(){
+            goMart();
+            await pickDrink();
+            pay();
+        }
+        exec()
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <h4>GET 요청</h4>
+    <form action="/getForm" method="GET">
+        <!-- name -> key값 -->
+        <!-- html로만은 유효성검사하면 안된다. 옵션을 지워버린다. -->
+        <input type="text" placeholder="아이디" name="id" required >
+        <input type="password" placeholder="패스워드" name="pw" pattern="^([a-zA-Z0-9]){8,13}$" required />
+        <button type="submit">제출</button>
+    </form>
+    <hr/>
+    <h4>Post 요청</h4>
+    <form action="/postForm" method="POST">
+        <input type="text" placeholder="id" name="id" readonly />
+        <br />
+        <input type="password" placeholder="pw" name="pw" disabled />
+        <br />
+        <input type="email"/><br>
+        <br>
+        <input type="radio"/><br>
+        <br>
+        <input type="checkbox"/><br>
+        <input type="tel"/><br>
+        <input type="number"/><br>
+        <input type="color"/><br>
+        <button type="submit">제출</button>
+    </form>
+
+</body>
+</html>

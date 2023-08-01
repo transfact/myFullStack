@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: blueviolet;
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body>
+    <h1><%= title%></h1>
+    <div><span><%= userInfo.name %></span>님 환영합니다.</div>
+    <div>성별은 <span><%= userInfo.sex %>입니다</span></div>
+    <div>생년월일은 <span><%= userInfo["생년"] %>년 <%= userInfo["월"] %>월 <%= userInfo["일"] %>일 입니다</span></div>
+
+    <div>취미는 <span><%= userInfo.hobby %>입니다</span></div>
+    <div>이메일은 <span><%= userInfo.email %>입니다</span></div>
+    <div>검색어는 <span><%= userInfo.search %>입니다</span></div>
+    <br>
+    <br>
+    <a href="/">홈으로 이동</a>
+
+
+
+
+</body>
+</html>

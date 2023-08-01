@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/postForm" method="POST">
+
+    <div>이름 <input type="text" name="name" required></div>
+
+    <fieldset><legend>성별</legend>
+    <input type="radio" value="남자" name="sex" required>
+    <span>남성</span>
+    <input type="radio" value="여자" name="sex" required>
+    <span>여성</span> </div>
+    </fieldset>
+    <br>
+
+    <fieldset>
+    <legend>생년월일</legend>
+    <select name="생년", id="year-select">
+        <% for(let i=1998; i<2024; i++){ %>
+            <% console.log(i) %>
+         <option value=<%= i %>> <%= i %></option>
+        <% } %>
+    </select>
+    <span>년</span>
+    <select name="월", id="month-select">
+        <% for(let i=1; i<13; i++){ %>
+         <option value=<%= i %>> <%= i %></option>
+        <% } %>
+    </select>
+    <span>월</span>
+
+    <select name="일", id="day-select">
+        <% for(let i=1; i<32; i++){ %>
+         <option value=<%= i %>> <%= i %></option>
+        <% } %>
+    </select>
+    <span>일</span>
+    </fieldset>
+
+    <br>
+    <fieldset><legend>관심사</legend>
+        <input type="checkbox" value="여행" name="hobby">
+        <span>여행</span>
+        <input type="checkbox" value="패션" name="hobby">
+        <span>패션</span>
+        <input type="checkbox" value="게임" name="hobby">
+        <span>게임</span>
+    </fieldset>
+    <br>
+
+    <span>이메일 : </span><input type="email" name="email" style="width: 500px;" pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}" required/> <br>
+
+    <span>검색창 : </span><input type="search" name = "search" style="width: 500px;">
+    <br>
+
+
+
+    <button type="submit">POST제출</button>
+    </form>
+        
+
+</body>
+</html>

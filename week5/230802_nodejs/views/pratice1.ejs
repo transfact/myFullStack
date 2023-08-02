@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        .visible{
+            display:contents;
+        }
+        .invisible{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form name ='register'>
+
+    <div>이름 <input type="text" name="name" required></div>
+
+    <fieldset><legend>성별</legend>
+    <input type="radio" value="남자" name="sex" required>
+    <span>남성</span>
+    <input type="radio" value="여자" name="sex" required>
+    <span>여성</span> </div>
+    </fieldset>
+    <br>
+
+    <fieldset>
+    <legend>생년월일</legend>
+    <select name="year", id="year-select">
+        <% for(let i=1998; i<2024; i++){ %>
+         <option value=<%= i %>> <%= i %></option>
+        <% } %>
+    </select>
+    <span>년</span>
+    <select id="months" name="월", id="month-select" onchange="changeValue(this)">
+        <% for(let i=1; i<13; i++){ %>
+         <option value=<%= i %>> <%= i %></option>
+        <% } %>
+    </select>
+    <span>월</span>
+
+    <select id="days" name="일", id="day-select">
+        <% for(let i=1; i<32; i++){ %>
+         <option class="visible" value=<%= i %> > <%= i %></option>
+        <% } %>
+    </select>
+    <span>일</span>
+    </fieldset>
+
+    <br>
+    <fieldset><legend>관심사</legend>
+        <input type="checkbox" value="여행" name="hobby">
+        <span>여행</span>
+        <input type="checkbox" value="패션" name="hobby">
+        <span>패션</span>
+        <input type="checkbox" value="게임" name="hobby">
+        <span>게임</span>
+    </fieldset>
+    <br>
+
+    <span>이메일 : </span><input type="email" name="email" style="width: 500px;" pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}" required/> <br>
+
+    <span>검색창 : </span><input type="search" name = "search" style="width: 500px;">
+    <br>
+    <button type="button" onclick="ajaxSignIn()">ajax 회원가입 제출</button>
+    </form>
+        
+    <script>
+        const changeValue = (target) => {
+            // 선택한 option의 value 값
+        
+            let month=target.value
+            console.log(month);
+            let days = document.getElementById("days")
+            console.log(days)
+        
+            if(['1','3','5','7','8','10','12'].includes(month) ){
+                $(days).children("*").addClass("visible")
+                $(days).children("*").removeClass("invisible")
+            }else if (['4','6','9','11'].includes(month)) {
+                $(days).children("*:nth-child(n+1):nth-child(-n+30)").removeClass("invisible")
+                $(days).children("*:nth-child(n+1):nth-child(-n+30)").addClass("visible")
+                $(days).children("*:nth-child(31)").addClass("invisible")
+                $(days).children("*:nth-child(31)").removeClass("visible")
+            }else if (month =2){    
+                $(days).children("*:nth-child(n+29)").addClass("invisible")
+                $(days).children("*:nth-child(n+29)").removeClass("visible")
+            }
+
+            }
+                //회원가입 ajax
+        function ajaxSignIn(){
+            console.log("ajaxSignIn 선택")
+
+            const forms= document.forms['register']
+            // 이름
+            console.log(forms.name.value)
+            // 성별
+            console.log(forms.sex.value)
+            // 생년월일
+            console.log(forms.year.value)
+            console.log(forms.months.value)
+            console.log(forms.days.value)
+            //취미
+            console.log("123",)
+
+            let hobbies = forms.hobby
+            hobbies.forEach((data,idx,tmp)=>{
+                console.log(data,idx,tmp)
+            })
+            var checkedHobbies = $("input[name=hobby]:checked")
+            var hobbyArray=[]
+            for (let i=0;i<checkedHobbies.length;i++ ){
+                hobbyArray.push(checkedHobbies[i].value)
+            }
+            console.log(hobbyArray)
+            // 이메일
+            console.log(forms.email.value)
+            // 검색창
+            console.log(forms.search.value)
+
+            const data= {
+                name : forms.name.value,
+                gender : forms.sex.value,
+                birth_year : forms.year.value,
+                birth_month : forms.months.value,
+                birth_date : forms.days.value,
+                hobby : hobbyArray,
+                email : forms.email.value,
+                search : forms.search.value
+            }
+            $.ajax({
+                type : "GET",
+                url : "/ajaxSignIn",
+                data : data,
+                success : (res)=>{
+                    console.log("res: ", res)
+                    
+                }
+            })
+
+        }
+        
+        
+        
+        </script>
+</body>
+
+</html>

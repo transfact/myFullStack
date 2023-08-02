@@ -32,6 +32,6 @@ server.listen(8080,function(){
 // const mod = require("./module");
 // const {a,b} =require("./module");
 // // 객체만 된다
-// let {qw,er} = "123/123".split("/");
+// let [qw,er] = "123/123".split("/");
 // console.log(a,b)
 // console.log(qw,er)

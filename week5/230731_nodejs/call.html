@@ -8,14 +8,14 @@
 <body>
     <script>
     // 이 페이지를 실행했을 때 무슨 지옥이 날까?
-    let i=0;
+
     //콜백 지옥 
     for(let i =0; i<1000; i++){
         // console.log(`${i}`)
         // let funcInClosure = function(){
         setTimeout(function () {
             console.log(`checker`)
-            document.body.style.backgroundColor='red'
+            document.body.style.backgroundColor='red'  //1초뒤에 
             setTimeout(function () {
             console.log(`checker2`)
             document.body.style.backgroundColor='orange'
@@ -36,8 +36,9 @@
         // }
         // funcInClosure()
     }
-    
-    for(i=1; i<100; i++){
+    let i=0;
+
+    for(let i=1; i<100; i++){
         setTimeout(function(){
             document.write(i+"<br/>");
         }, 1000);

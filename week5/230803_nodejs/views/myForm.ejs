@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form action="/signIn"  name="signin" enctype="multipart/form-data" method="post">
+    <div><span>아이디 : </span><input type="text" name = "id"></div>
+    <div><span>비밀번호 : </span><input type="password" name = "pw"></div>
+    <div><span>이름 : </span><input type="text" name = "name"></div>
+    <div><span>나이 : </span><input type="number" name = "age"></div>
+    
+    <div><span>프로필사진 : </span><input type="file" name = "userImg"></div>
+    <button type="button" onclick="resetBtn()">reset</button>
+    <button type="submit">업로드</button>
+    </form>
+    <script>
+        function resetBtn(){
+            let form =document.forms['signin']
+            console.log(form)
+            form.id.value=""
+            form.pw.value=""
+            form.name.value=""
+            form.age.value=""
+            //img 초기화 코드
+            form.userImg.value=""
+            // form.reset()
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- jquery -->
+      <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+      <!-- axios -->
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    
+    <title>Document</title>
+</head>
+<body>
+    <h1>FORM 싱글 연습</h1>
+    <form action = "/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name = 'userfile'/><br/>
+        <input type="text" name = 'title' /><br/>
+        <button type="submit">업로드</button>
+    </form>
+    <h1>FORM 멀티 연습 Ver 1</h1>
+    <form action = "/uploadArray1" method="POST" enctype="multipart/form-data">
+        <input type="file" name = 'userfiles' multiple/><br/>
+        <input type="text" name = 'titles' multiple/><br/>
+        <button type="submit">업로드</button>
+    </form>
+
+    <h1>FORM 멀티 연습 Ver 2</h1>
+    <form action = "/uploadArray2" method="POST" enctype="multipart/form-data">
+        <input type="file" name = 'userfield1'/><br/>
+        <input type="text" name = 'title1' /><br/>
+        <input type="file" name = 'userfield2'/><br/>
+        <input type="text" name = 'title2' /><br/>
+        <button type="submit">업로드</button>
+    </form>
+
+    <h1>동적 파일 업로드</h1>
+    <input type="file" name="dynamic-userfile" id="dynamic-file" enctype="multipart/form-data"/><br/>
+    <input type="text" id="dynamic-title"/><br/>
+    <button type="submit" onclick = "uploadDynamic()">업로드</button>
+    <br>
+    <div class="result"></div>
+
+
+    <script>
+        const resultBox = document.querySelector(".result")
+        function uploadDynamic(){
+            const formData =new FormData();
+            //ejs 파일에서 찾기
+            const file =document.getElementById('dynamic-file')
+            const title = document.getElementById('dynamic-title')
+            //타이틀
+            console.log(file)
+            formData.append("dynamic-title",title.value)
+            //파일은 항상 나중에!
+            formData.append('dynamic-file',file.files[0])
+        
+            axios({
+                method : "POST",
+                url : '/dynamicFile',
+                data : formData,
+                headers : {
+                    "Content-Type" : 'multipart/form-data',
+                },
+            }).then ( (response)=>{
+                console.log("res",response.data)
+                console.log("path",response.data.path)
+                resultBox.innerHTML=`<div><img src=${response.data.path}></div>`
+            })
+        }
+     
+
+
+
+    </script>
+</body>
+
+</html>

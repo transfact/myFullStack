@@ -46,35 +46,28 @@
                 url : "/ajaxLogin",
                 data :data,
                 success : (res)=>{
+                    let successBox =$("#successBox")
+                    let faliureBox =$("#faliureBox")
                     console.log("res : " , res)
                     if (res["try"]== "success" ){
-                        let successBox =$("#successBox")
                         successBox
                         .addClass("visible")
                         .removeClass("invisible")
-                        
-                        let faliureBox =$("#faliureBox")
                         faliureBox
                         .removeClass("visible")
                         .addClass("invisible")
                     }else if (res["try"]== "pw_err"){
-                        let successBox =$("#successBox")
                         successBox
                         .removeClass("visible")
                         .addClass("invisible")
-                        
-                        let faliureBox =$("#faliureBox")
                         faliureBox
                         .addClass("visible")
                         .removeClass("invisible")
                         faliureBox.text("패스워드가 틀립니다.")
                     }else if (res["try"]== "id_err"){
-                        let successBox =$("#successBox")
                         successBox
                         .removeClass("visible")
                         .addClass("invisible")
-                        
-                        let faliureBox =$("#faliureBox")
                         faliureBox
                         .addClass("visible")
                         .removeClass("invisible")

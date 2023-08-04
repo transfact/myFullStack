@@ -106,17 +106,13 @@
             console.log(forms.months.value)
             console.log(forms.days.value)
             //취미
-            console.log("123",)
 
-            let hobbies = forms.hobby
-            hobbies.forEach((data,idx,tmp)=>{
-                console.log(data,idx,tmp)
-            })
-            var checkedHobbies = $("input[name=hobby]:checked")
             var hobbyArray=[]
-            for (let i=0;i<checkedHobbies.length;i++ ){
-                hobbyArray.push(checkedHobbies[i].value)
-            }
+            $("input[name=hobby]:checked").toArray().forEach(element => {
+                hobbyArray.push(element.value)
+            });
+            
+            
             console.log(hobbyArray)
             // 이메일
             console.log(forms.email.value)

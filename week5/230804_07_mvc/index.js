@@ -51,7 +51,12 @@ app.get('/comment/:id',(req,res)=>{
     // console.log(req.params.id)
     const commentId=req.params.id
     console.log(comments[commentId-1])
-    res.render('comment',{commentInfo : comments[commentId-1]})
+    res.render('comment',{commentInfo :comments[commentId-1]})
+})
+
+// * 
+app.get("*",(req,res)=>{
+    res.render("404")
 })
 
 app.listen(PORT,()=>{

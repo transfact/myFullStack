@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+         <!-- jquery -->
+         <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+         <!-- axios -->
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h2>안녕하세요 <%= data.name %>님</h2>
+    <form name="profile-form">
+    <div> 이름 <input type="text" value="<%= data.name %>" name="name"></div>
+    <div> id : <input type="text" value="<%= data.userid %>" name="userid"></div>
+    <div> pw : <input type="number" value="<%= data.pw %>" name="pw"></div>
+    <button type="button" onclick="modify('<%= data.id%>')">수정</button>
+    <button type="button" onclick="del('<%= data.id%>')">삭제</button>
+    </form>
+    <script>
+        function modify(id){
+            let form= document.forms['profile-form']
+            let name = form.name.value
+            let userid = form.userid.value
+            let pw = form.pw.value
+            console.log('modify')
+            axios({
+                method : "patch",
+                url : "/user/edit",
+                data : {
+                id : id,
+                name : name,
+                userid :userid,
+                pw : pw
+                }
+            }).then((res)=>{
+                alert("수정완료!")
+            })
+        }
+        function del(id){
+            axios({
+                method : "delete",
+                url : "/user/delete",
+
+                data : {id : id }
+            }).then((res)=>{
+                location.href= "/user"
+            })
+        }
+    </script>
+</body>
+</html>

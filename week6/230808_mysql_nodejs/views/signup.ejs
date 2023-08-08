@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <!-- axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form name="signup">
+    <div><span>아이디 : </span><input type="text" name = "id"></div>
+    <div><span>비밀번호 : </span><input type="password" name = "pw"></div>
+    <div><span>이름 : </span><input type="text" name = "name"></div>
+    <a href="/user">홈으로</button>
+    <button type="button" onclick="requestSignUp()">회원가입</button>
+    </form>
+    <script>
+        function requestSignUp(){
+            let form= document.forms["signup"]
+            const id=form.id.value
+            const pw = form.pw.value
+            const name=form.name.value
+            axios({
+                method : "post",
+                url : "/user/signup",
+                data : {
+                    id : id,
+                    pw : pw,
+                    name : name
+                }
+            }).then((res)=>{
+                console.log(res.data)
+                if(res.data.result==true){
+                    alert("회원가입 성공!")
+                }else{
+                    // 나중에 유효성 검사 필요
+                    alert("회원가입 실패!")
+                }
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>

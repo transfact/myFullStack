@@ -11,6 +11,8 @@ app.use(express.json())
 //라우터 가져오기
 // index를 생략가능하다(코드에서는 생략안할것임)
 const router =require("./routes/index.js")
+//const visitorRouter = require("/visitor")
+//app.use("/router/visitor",visitorRouter)
 app.use(router)
 
 app.listen(PORT, ()=>{

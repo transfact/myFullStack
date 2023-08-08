@@ -12,7 +12,7 @@
 </head>
 <body>
     <form name="visitor-form">
-    <fieldset><legend>방명록 등록</legend>
+    <fieldset><legend>방명록 등록/수정</legend>
         <input type="text" value="" placeholder="사용자 이름" name="inputName" required><br>
         <input type="text" value="" placeholder="방명록" name="inputComment"><br>
         <button type="button" id="requestBtn" onclick="addBtn()">등록</button>
@@ -31,7 +31,7 @@
         <tbody>
             <% for(let i=0; i<data.length; i++){ %>
                 <tr id = "tr_<%= data[i].id %>">
-                    <td name="id"><%= data[i].id %></td>
+                    <td name="id"><a href="/visitor/get?id=<%= data[i].id %>"><%= data[i].id %></td>
                     <td name="name"><%= data[i].name %></td>
                     <td name="comment"><%= data[i].comment %></td>
                     <td><button type="button" name="modify" onclick="modifyBtn('<%= data[i].id %>')">수정</button></td>
@@ -60,12 +60,12 @@
                 data,
             }).then((res)=>{
                console.log(res.data)
-               const html=`<tr id = tr_${res.data.id}.id>
-                    <td name="id">${res.data.id}</td>
+               const html=`<tr id = tr_${res.data.id}>
+                    <td name="id"><a href="/visitor/get?id=${res.data.id}">${res.data.id}</td>
                     <td name="name">${res.data.name}</td>
                     <td name="comment">${res.data.comment}</td>
-                    <td><button type="button" name="modify" onclick="modifyBtn()">수정</button></td>
-                    <td><button type="button" name="delete" onclick="delBtn()" >삭제</button></td>
+                    <td><button type="button" name="modify" onclick="modifyBtn(${res.data.id})">수정</button></td>
+                    <td><button type="button" name="delete" onclick="delBtn(${res.data.id})" >삭제</button></td>
                 </tr>
                 `
                 //                       가장 끝
@@ -75,15 +75,45 @@
         };
 
         function modifyBtn(id){
-
+            console.log(typeof(id))
+            let form=document.forms['visitor-form']
+            let name = form.inputName.value;
+            let comment= form.inputComment.value;
+            const data={
+                name : name,
+                comment : comment,
+                id : Number(id)
+            }
+            console.log(data)
+            axios({
+                method :"PATCH",
+                url : "/visitor/edit",
+                data,
+            }).then((res)=>{
+               console.log(res.data)
+               if(res.data.result){
+                    window.location.reload()
+               }
+             
+            })
         };
 
         function delBtn(id){
+            //확인 취소가 나옴
+            if(confirm("삭제하시겠습니까?")){
+                console.log("삭제")
+            }else{
+                console.log("취소")
+                return
+            }
             axios({
                 method : "delete",
                 url : `/visitor/delete/${id}`,
             }).then((res)=>{
                 console.log(res)
+                if(res.data.result){
+                    window.location.reload()
+               }
             })
         };
     </script>

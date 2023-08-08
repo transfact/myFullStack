@@ -6,7 +6,7 @@ exports.main= (req,res) => {
 }
 exports.getVisitors = (req, res)=>{
     visitor.getVisitors((result) =>{
-        console.log("cVisitor.js ",result)
+        console.log("getVisitors ",result)
         res.render('visitor',{data : result})
     })
 }
@@ -25,7 +25,11 @@ exports.postVisitor =(req,res)=>{
     //res.send("방명록 하나 생성")
 }
 exports.patchVistor =(req,res)=>{
-    res.send("방명록 변경")
+    visitor.patchVisitor(req.body.name,req.body.comment,req.body.id,(result)=>{
+        res.send(result)
+    })
+
+    // res.send("방명록 변경")
     
 }
 exports.deleteVisitor =(req,res)=>{
@@ -34,6 +38,5 @@ exports.deleteVisitor =(req,res)=>{
     visitor.deleteVisitor(id,(result)=>{
         res.send(result)
     })
-    res.send("방명록 삭제")
 }
 

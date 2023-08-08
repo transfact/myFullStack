@@ -9,12 +9,11 @@ const conn =mysql.createConnection({
 })
 
 exports.getVisitors = (cb) => {
-    conn.query("select * from visitor", (err,rows,field)=>{
+    conn.query(`select * from visitor`, (err,rows,field)=>{
         if (err){
             throw err;
         }
-        console.log("field",field)
-        console.log('visitor.js',rows)
+        console.log("get row",rows)
         cb(rows);
     })
 }
@@ -37,13 +36,17 @@ exports.postVisitor = (name,comment,cb) => {
         cb({id : rows.insertId ,name : name, comment : comment});
     })
 }
-//변경
-exports.patchVisitor = (cb) => {
-    conn.query("select * from visitor", (err,rows)=>{
+//변경                  매개변수 입력
+exports.patchVisitor = (name,comment,id,cb) => {
+    console.log("patch",name)
+    conn.query(`update visitor set name='${name}',comment = '${comment}' where id= '${id}' `, (err,rows)=>{
         if (err){
             throw err;
+        }else{
+            console.log(rows)
+            cb({result : true});
         }
-        cb(rows);
+
     })
 }
 
@@ -52,8 +55,10 @@ exports.deleteVisitor = (id,cb) => {
     conn.query(`delete from visitor where id = "${id}" `, (err,rows)=>{
         if (err){
             throw err;
+        }else{
+            console.log(rows)
+            cb({result : true});
         }
-        console.log(rows)
-        cb({id : rows.insertId});
+
     })
 }

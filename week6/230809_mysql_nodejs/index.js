@@ -7,10 +7,13 @@ app.set("views","./views")
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 app.use("/static",express.static(__dirname+"/static"))
 
 //라우터 가져오기

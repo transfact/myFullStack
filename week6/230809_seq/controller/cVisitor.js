@@ -1,6 +1,7 @@
 // const visitor= require("../model/mVisitor")
 
 const models = require("../models/index.js")
+
 exports.main= (req,res) => {
     res.render('index')
 }

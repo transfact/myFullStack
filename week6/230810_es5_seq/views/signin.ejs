@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+      <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="/static/css/404.css" rel="stylesheet">
+    <style>
+        .invisible{
+            display: none;
+        }
+        .visible{
+            display :block;
+        }
+    </style>
+</head>
+<body>
+    <h1>로그인</h1>
+    <form name="login_data">
+        <label for="id">아이디</label>
+        <input type="text" name="id" id="id">
+
+        <label for="pw">패스워드</label>
+        <input type="password" name="pw" id="pw">
+        <br>
+        <div id="successBox" class="invisible" style="color: blue;" >로그인에 성공했습니다.</div>
+        <div id="faliureBox" class="invisible" style="color: red;">로그인에 실패했습니다.</div>
+        <br>
+        <button type="button" onclick="axiosPost()">로그인</button>
+    </form>
+    <form action="/user/profile" method="post" name="form_profile">
+        <input type="hidden" name = "profile">
+    </form>
+    <script>
+
+        function axiosPost(){
+            console.log("axiosPost 실행확인")
+            //폼 선택    
+            const form =document.forms['login_data']
+            console.log("로그인 버튼")
+            let id=form.id.value
+            let pw=form.pw.value
+            const data={
+                id : id,
+                pw : pw,
+            }
+            axios({
+                method :"POST",
+                url : "/user/signin",
+                data,
+            }).then((res)=>{
+                let successBox =$("#successBox")
+                let faliureBox =$("#faliureBox")
+                console.log("res : " , res.data,res.data['try']=='success')
+                if (res.data['try']=='success'){
+                    console.log('성공')
+                    console.log("check1")
+                    successBox
+                    .addClass("visible")
+                    .removeClass("invisible")
+                    faliureBox
+                    .removeClass("visible")
+                    .addClass("invisible")
+                    return res.data['loginfo'][0]
+                }else {
+                    console.log("check2")
+                    successBox
+                    .removeClass("visible")
+                    .addClass("invisible")
+                    faliureBox
+                    .addClass("visible")
+                    .removeClass("invisible")
+                    faliureBox.text("로그인에 실패했습니다.")
+                    return res.data['loginfo'][0]
+                }
+            }).then((loginSuccess)=>{
+                console.log("마지막",loginSuccess)
+                if(loginSuccess.id > 0 ){
+                    alert("login 성공!")
+                    let requestForm = document.forms['form_profile']
+                    requestForm.innerHTML =
+                    `<input name=loginCheck value=${loginSuccess.loginCheck} type = "hidden">
+                    <input name=id value=${loginSuccess.id} type = "hidden">
+                    <input name= userid value=${loginSuccess.userid} type = "hidden">
+                    <input name=pw value=${loginSuccess.pw} type = "hidden">
+                    <input name=name value=${loginSuccess.name} type = "hidden">`
+                    requestForm.submit()
+                }else{
+                    alert("login 실패!")
+                    window.location.reload();
+                }
+            })
+           
+        }
+
+    </script>
+</body>
+</html>

@@ -22,10 +22,12 @@ const visitor = function(sequelize,DataTypes){
             }
             
         },
+        
         {
-            tableName : 'visitor',
-            freezeTableName : true,
-            timestamps : false
+            //visitor table이 이미 있는 경우
+            // tableName : 'visitor',
+            // freezeTableName : true,
+            // timestamps : false
         }
     );
     return model

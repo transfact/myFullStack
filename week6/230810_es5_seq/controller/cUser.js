@@ -1,5 +1,11 @@
 const user= require("../models/index.js")
 
+// Op.gt (초과) Op.gte(이상) Op.lte(미만), Op.ne(같이 않은)
+// Op.or (또는) Op.in(배열요소중 하나), Op.notIn(배열요소와 전부다름)
+//where { id : {[Op.gt] :2 }}
+//order : [{id,desc}]
+//limit : 3
+//offset : 1
 
 exports.main= (req,res) => {
     res.render('index')
@@ -71,6 +77,9 @@ exports.requestDel=async (req,res)=>{
     console.log(req.body)
     const {id} = req.body
     try {
+        //             where : {
+        //     id : [2,3,4]
+        // }
         const result =await user.users.destroy({
             where : {
                 id :id

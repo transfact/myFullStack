@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>session 로긴</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .makeHidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2 id = 'loginText'>로그인페이지</h2>
+    <button id = 'loginBtn'  type="button" onclick="login()">로그인</button>
+    <button id = "signUpBtn "type="button">회원가입</button>
+
+    <script>
+        function login(){
+            axios({
+                method : "GET",
+                url : "/login"
+            }).then((res)=>{
+                console.log(res.data)
+                console.log(document.cookies)
+            })
+        }
+    </script>
+</body>
+</html>

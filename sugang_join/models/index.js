@@ -18,9 +18,14 @@ db.Student.hasOne(db.StudentProfile,{foreignKey : "student_id"})
 db.StudentProfile.belongsTo(db.Student,{foreignKey : "student_id"})
 
 //1:다 학생과 강의(수정할꺼임)
-db.Student.hasMany(db.Classes,{foreignKey : "student_id"})
-db.Classes.belongsTo(db.Student,{foreignKey : "student_id"})
+//1:다 class:수강
+//1:다 학생 :수강
 
+db.Classes.hasMany(db.sugang,{foreignKey : "class_id"})
+db.sugang.belongsTo(db.Classes,{foreignKey : "class_id"})
+
+db.Student.hasMany(db.sugang,{foreignKey : "student_id"})
+db.sugang.belongsTo(db.Student,{foreignKey : "student_id"})
 
 //관계형서웨
 

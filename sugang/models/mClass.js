@@ -4,7 +4,7 @@ const classModel = (sequelize) =>{
     const Classes = sequelize.define(
         "classes",
         {
-            id : {
+            class_id : {
                 type: DataTypes.INTEGER,
                 allowNull : false,
                 primaryKey : true,
@@ -21,8 +21,16 @@ const classModel = (sequelize) =>{
                 type : DataTypes.STRING(7),
                 allowNull : false,
             },
-            teacher_name : {
-                type : DataTypes.STRING(15),
+            personnel : {
+                type: DataTypes.INTEGER,
+                allowNull : false,
+            }
+            ,
+            professor_id : {
+                type : DataTypes.INTEGER,
+                allowNull : false,
+                foreignKey : true,
+
             }
         }
     )

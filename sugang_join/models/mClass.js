@@ -21,8 +21,9 @@ const classModel = (sequelize) =>{
                 type : DataTypes.STRING(7),
                 allowNull : false,
             },
-            teacher_name : {
-                type : DataTypes.STRING(15),
+            teacher_id : {
+                type : DataTypes.INTEGER,
+                foreignKey : true
             }
         }
     )

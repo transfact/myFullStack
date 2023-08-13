@@ -2,9 +2,35 @@
 const {Student,StudentProfile,Classes} = require("../models/index.js")
 
 exports.main = (req,res) =>{
-    res.render(index.js)
+    res.render('index')
 }
 
+//로그인 페이지로
+exports.login = (req,res) =>{
+    res.render('login')
+}
+
+//로그인 요청  /login/reqSignIn
+exports.loginRequest = async (req,res) =>{
+    let {id,pw}  = req.body
+    let user_id =id
+    let password=pw
+    console.log("id: ",user_id)
+    console.log("session", req.session)
+
+    try {
+        const result= await Student.findOne({
+            where : {
+                user_id : user_id,
+                password : password
+            }
+        })
+        console.log(result)
+    }catch(err){
+        console.log(err)
+    }
+    res.send("hello")
+}
 exports.post_class = async (req,res) =>{
     try{
         const {name,room,code,teacher_name,student_id} =req.body

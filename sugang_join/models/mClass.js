@@ -10,6 +10,11 @@ const classModel = (sequelize) =>{
                 primaryKey : true,
                 autoIncrement : true,
             },
+            professor_id : {
+                type : DataTypes.INTEGER,
+                foreignKey : true,
+                allowNull : false
+            },
             name  : {
                 type : DataTypes.STRING(31),
                 allowNull : false,
@@ -21,10 +26,11 @@ const classModel = (sequelize) =>{
                 type : DataTypes.STRING(7),
                 allowNull : false,
             },
-            teacher_id : {
+            time  : {
                 type : DataTypes.INTEGER,
-                foreignKey : true
-            }
+                allowNull : false,
+            },
+
         }
     )
     return Classes

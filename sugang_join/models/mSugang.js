@@ -15,6 +15,10 @@ const sugang   = function(sequelize) {
                 allowNull : false,
                 primaryKey : true,
                 foreignKey : true
+            },
+            score: {
+                type: DataTypes.STRING(10),
+                allowNull : true,
             }
         }
     )

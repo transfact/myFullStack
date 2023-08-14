@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>session 로긴</title>
+    <script
+    src="https://code.jquery.com/jquery-3.7.0.js"
+    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .makeHidden{
@@ -13,17 +17,70 @@
 </head>
 <body>
     <h2 id = 'loginText'>로그인페이지</h2>
+    <form id="idpw_form" name="idpw_form">
+        <input id="inputId" name="id" type="text" value="hi">
+        <input id="inputPw" name='pw' type="password" value="0518">
+    </form>
+
     <button id = 'loginBtn'  type="button" onclick="login()">로그인</button>
-    <button id = "signUpBtn "type="button">회원가입</button>
+    <button id = 'logoutBtn'  type="button" onclick="logout()" >로그아웃</button>
+    <button id = "signUpBtn" type="button">회원가입</button>
 
     <script>
+        console.log(localStorage.getItem("token"))
+        if(localStorage.getItem('token')){
+            $("#loginBtn").addClass("makeHidden")
+            $("#signUpBtn").addClass("makeHidden")
+            $("#inputId").addClass("makeHidden")
+            $("#inputPw").addClass("makeHidden")
+            $("#logoutBtn").removeClass("makeHidden")
+            $("#loginText").text("hi님 안녕하세요")
+        }else{
+            $("#loginBtn").removeClass("makeHidden")
+            $("#signUpBtn").removeClass("makeHidden")
+            $("#inputId").removeClass("makeHidden")
+            $("#inputPw").removeClass("makeHidden")
+            $("#logoutBtn").addClass("makeHidden")
+            $("#loginText").text("로그인페이지")
+        }
+
         function login(){
+            let formData= document.forms["idpw_form"]
+            let id = formData.id.value
+            let pw = formData.pw.value
+            console.log(id)
             axios({
-                method : "GET",
-                url : "/login"
+                method : "POST",
+                url : "/login",
+                data : {
+                    id,
+                    pw
+                }
             }).then((res)=>{
                 console.log(res.data)
-                console.log(document.cookies)
+                console.log(res.data.token)
+                if(res.data['result']){
+                    localStorage.setItem("token",res.data.token)
+                    alert("로그인 완료")
+                    window.location.reload()
+                }else{
+                    window.location.reload()
+                }
+            })
+        }
+
+        function logout(){
+
+            axios({
+                method : "POST",
+                url : "/logOut",
+                headers: {
+	            Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }).then((res)=>{
+                console.log(res.data)
+                localStorage.clear()
+                window.location.reload()
             })
         }
     </script>

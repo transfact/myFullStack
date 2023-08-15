@@ -1,5 +1,5 @@
 const express = require('express')
-const jwt = require('jsonwebtoken')
+    const jwt = require('jsonwebtoken')
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 
@@ -66,6 +66,27 @@ app.post('/login',(req,res)=>{
     // }
 })
 
+
+app.get('/verify',(req,res)=>{
+    console.log(req.headers.authorization);
+    const auth = req.headers.authorization
+    const token = auth.split(" ")
+    if(token[0]==='Bearer'){
+        jwt.verify(token[1],SECRET,(err,result)=>{
+            if (err){
+                console.log(err)
+                res.status(403).send({message : "검증 실패"})
+            }
+            console.log("send",result)
+            res.send({
+                "verify" : 1
+            })
+        })
+    }else{
+        res.send({"message" : "잘못된 인증방식입니다"})
+    }
+})
+
 app.post('/logOut',(req,res)=>{
     console.log(req.headers.authorization);
     const auth = req.headers.authorization
@@ -76,7 +97,7 @@ app.post('/logOut',(req,res)=>{
                 console.log(err)
                 res.status(403).send({message : "검증 실패"})
             }
-            console.log(result)
+            console.log("send",result)
             res.send(result)
         })
 

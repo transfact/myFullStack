@@ -1,5 +1,7 @@
 const express = require('express')
 const session = require("express-session")
+const jwt = require('jsonwebtoken')
+const secret = "qwerreq123321"
 const app = express()
 const PORT =8080;
 const db= require("./models")
@@ -12,6 +14,7 @@ app.set("views",'./views')
 //body-parser
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
+app.use('/static',express.static(__dirname+'/static'))
 
 //세션
 

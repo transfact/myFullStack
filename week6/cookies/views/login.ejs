@@ -28,13 +28,31 @@
 
     <script>
         console.log(localStorage.getItem("token"))
-        if(localStorage.getItem('token')){
-            $("#loginBtn").addClass("makeHidden")
-            $("#signUpBtn").addClass("makeHidden")
-            $("#inputId").addClass("makeHidden")
-            $("#inputPw").addClass("makeHidden")
-            $("#logoutBtn").removeClass("makeHidden")
-            $("#loginText").text("hi님 안녕하세요")
+        if(localStorage.getItem("token")){
+        axios({
+                method : "GET",
+                url : "/verify",
+                headers: {
+	                Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }).then((res)=>{
+                console.log(res.data)
+                if(res.data.verify==1){
+                    $("#loginBtn").addClass("makeHidden")
+                    $("#signUpBtn").addClass("makeHidden")
+                    $("#inputId").addClass("makeHidden")
+                    $("#inputPw").addClass("makeHidden")
+                    $("#logoutBtn").removeClass("makeHidden")
+                    $("#loginText").text("hi님 안녕하세요")
+                }else{
+                    $("#loginBtn").removeClass("makeHidden")
+                    $("#signUpBtn").removeClass("makeHidden")
+                    $("#inputId").removeClass("makeHidden")
+                    $("#inputPw").removeClass("makeHidden")
+                    $("#logoutBtn").addClass("makeHidden")
+                    $("#loginText").text("로그인페이지")
+                }
+            })
         }else{
             $("#loginBtn").removeClass("makeHidden")
             $("#signUpBtn").removeClass("makeHidden")
@@ -70,15 +88,15 @@
         }
 
         function logout(){
-
             axios({
                 method : "POST",
                 url : "/logOut",
                 headers: {
-	            Authorization: `Bearer ${localStorage.getItem("token")}`
+	                Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             }).then((res)=>{
-                console.log(res.data)
+                console.log(res.data.id)
+                alert(`goodbye ${res.data.id}`,)
                 localStorage.clear()
                 window.location.reload()
             })

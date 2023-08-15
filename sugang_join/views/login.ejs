@@ -31,7 +31,7 @@
         <br>
         <button type="button" onclick="axiosPost()">로그인</button>
     </form>
-    <form action="/user/profile" method="post" name="form_profile">
+    <form action="/user/sugang_main" method="POST" name="form_profile">
         <input type="hidden" name = "profile">
     </form>
     <script>
@@ -41,10 +41,10 @@
             //폼 선택    
             const form =document.forms['login_data']
             console.log("로그인 버튼")
-            let id=form.id.value
-            let pw=form.pw.value
+            let user_id=form.id.value
+            let password=form.pw.value
             const data={
-                user_id : id,
+                user_id : user_id,
                 password : password,
             }
             axios({
@@ -55,17 +55,17 @@
                 let successBox =$("#successBox")
                 console.log("res : " , res.data)
                 console.log(successBox)
-                let loginSuccess = res.data['loginfo'][0]
+                let loginSuccess = res.data.result
                 
-                if(loginSuccess.loginCheck){
+                if(loginSuccess){
                     alert("login 성공!")
+                    localStorage.setItem("token",res.data.token)
                     let requestForm = document.forms['form_profile']
                     requestForm.innerHTML =
-                    `<input name=loginCheck value=${loginSuccess.loginCheck} type = "hidden">
-                    <input name=id value=${loginSuccess.id} type = "hidden">
-                    <input name= userid value=${loginSuccess.userid} type = "hidden">
-                    <input name=pw value=${loginSuccess.pw} type = "hidden">
-                    <input name=name value=${loginSuccess.name} type = "hidden">`
+                    `<input name=student_id value=${loginSuccess.student_id} type = "hidden">
+                    <input name= user_id value=${loginSuccess.user_id} type = "hidden">
+                    <input name=password value=${loginSuccess.password} type = "hidden">
+                    `
                     requestForm.submit()
                 }else{
                     alert("login 실패!")

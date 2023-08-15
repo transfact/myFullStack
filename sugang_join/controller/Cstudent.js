@@ -47,7 +47,7 @@ exports.to_sugang_main =  async (req,res) =>{
             },
             include :[{model : Student}]
         })
-        console.log(result)
+        console.log("tosugangmain",result)
         res.render("sugang_main",{'data':result})
     }catch(err){
         console.log(err)
@@ -56,8 +56,8 @@ exports.to_sugang_main =  async (req,res) =>{
 }
 
 
-//수강신청 화면으로
-exports.to_sugang_register =(req,res)=>{
+//수강신청 검증
+exports.verify_sugang =(req,res)=>{
     console.log(req.headers.authorization);
     const auth = req.headers.authorization
     const token = auth.split(" ")
@@ -68,13 +68,27 @@ exports.to_sugang_register =(req,res)=>{
                 res.status(403).send({message : "검증 실패"})
             }else{
                 //err가 없으니 data를 담아서 넘겨준다.
-                console.log("검증완료", req.body)
-                res.render('sugang_register',{data : req.body})
+                console.log("검증완료", result)
+                res.send({"verify" : 1})
             }
-
         })
     }else{
         res.send({"message" : "잘못된 인증방식입니다"})
+    }
+}
+exports.to_sugang_register = async (req,res)=>{
+    const {student_id,name} =req.body
+    try {
+        const classResult =await Classes.findAll(
+            {
+                attributes : ["name","room","code","time","class_id"],
+                include : [{model : Professor, attributes : ['major','name']}]
+            }
+        )
+        console.log(classResult[0].professor)
+        res.render("sugang_register",{data : classResult,data2 : {name,student_id}})
+    }catch(err){
+        console.log(err)
     }
 }
 

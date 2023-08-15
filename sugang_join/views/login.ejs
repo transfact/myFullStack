@@ -31,7 +31,7 @@
         <br>
         <button type="button" onclick="axiosPost()">로그인</button>
     </form>
-    <form action="/user/sugang_main" method="POST" name="form_profile">
+    <form action="/user/to_sugang_main" method="POST" name="form_profile">
         <input type="hidden" name = "profile">
     </form>
     <script>
@@ -56,10 +56,11 @@
                 console.log("res : " , res.data)
                 console.log(successBox)
                 let loginSuccess = res.data.result
-                
+                //나중에는...교수로그인도 해야겠ㅈ?
                 if(loginSuccess){
                     alert("login 성공!")
                     localStorage.setItem("token",res.data.token)
+                    localStorage.setItem("student_id",loginSuccess.student_id)
                     let requestForm = document.forms['form_profile']
                     requestForm.innerHTML =
                     `<input name=student_id value=${loginSuccess.student_id} type = "hidden">

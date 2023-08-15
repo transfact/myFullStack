@@ -8,23 +8,34 @@
 </head>
 <body>
     <h1><%= data.name %>님 안녕하세요!</h1>
+    
     <div><button type="button" onclick="register('<%= data.student_id %>','<%= data.student_id %>')">수강신청</button></div>
+    
+    
+    <form action="/user/to_sugang_register" method="POST" name="form_user">
+        <input type="hidden" name = "profile">
+    </form>
     <script>
         function register(student_id,name){
             console.log(localStorage.getItem("token"))
             if(localStorage.getItem('token')){
                 axios({
-                    url : "/user/to_sugang_register",
-                    method : "POST",
+                    url : "/user/verify_sugang",
+                    method : "GET",
                     headers : {
                         Authorization : `Bearer ${localStorage.getItem('token')}`
-                    },
-                    data : {
-                        student_id,
-                        name
                     }
                 }).then((res)=>{
-                    console.log(res)
+                    console.log(res.data)
+                    if(res.data.verify==1){
+                        let requestForm = document.forms['form_user']
+                        requestForm.innerHTML =
+                        `<input name=student_id value=${student_id} type = "hidden">
+                        <input name= name value=${name} type = "hidden">
+                        `
+                        requestForm.submit()
+                    }
+
                 })
             }
 

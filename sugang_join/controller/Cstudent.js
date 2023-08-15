@@ -12,9 +12,8 @@ exports.login = (req,res) =>{
 
 //로그인 요청  /login/reqSignIn
 exports.loginRequest = async (req,res) =>{
-    let {id,pw}  = req.body
-    let user_id =id
-    let password=pw
+    let {user_id,password}  = req.body
+
     console.log("id: ",user_id)
     console.log("session", req.session)
 
@@ -26,6 +25,10 @@ exports.loginRequest = async (req,res) =>{
             }
         })
         console.log(result)
+        if(result){
+            req.session.loginSuccess=1
+            req.session.user_id=user_id
+        }
     }catch(err){
         console.log(err)
     }

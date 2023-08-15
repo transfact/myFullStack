@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link href="/static/css/404.css" rel="stylesheet">
+    <!-- <link href="/static/css/404.css" rel="stylesheet"> -->
     <style>
         .invisible{
             display: none;
@@ -41,12 +41,14 @@
             //폼 선택    
             const form =document.forms['login_data']
             console.log("로그인 버튼")
-            let id=form.id.value
-            let pw=form.pw.value
+            let user_id=form.id.value
+            let password=form.pw.value
+            console.log(user_id)
             const data={
-                user_id : id,
+                user_id : user_id,
                 password : password,
             }
+            console.log(data)
             axios({
                 method :"POST",
                 url : "/login/reqSignIn",

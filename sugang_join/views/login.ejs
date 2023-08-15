@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link href="/static/css/404.css" rel="stylesheet">
+    <!-- <link href="/static/css/404.css" rel="stylesheet"> -->
     <style>
         .invisible{
             display: none;
@@ -43,10 +43,15 @@
             console.log("로그인 버튼")
             let user_id=form.id.value
             let password=form.pw.value
+<<<<<<< HEAD
+=======
+            console.log(user_id)
+>>>>>>> 3628af5ff53e9de6cb9c44c21788c7263ecb2139
             const data={
                 user_id : user_id,
                 password : password,
             }
+            console.log(data)
             axios({
                 method :"POST",
                 url : "/login/reqSignIn",

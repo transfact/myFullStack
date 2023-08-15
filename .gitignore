@@ -1,5 +1,6 @@
 *.txt
 node_modules
+package-lock.json
 # module아래 무시
 # module/
 

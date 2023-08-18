@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .mkhidden{
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>
+            실습
+        </h2>
+        <div>
+            <button id="loginBtn" type="button" onclick="location.href='/toLogIn'">로그인</button>
+            <button id="logoutBtn" type="button" class="mkhidden" onclick="logout()">로그아웃</button>
+        </div>
+        <div>
+            <button type="button" onclick="location.href='/toSignUp'">회원가입</button>
+        </div>
+    </body>
+    <script>
+        
+        if(localStorage.getItem("login")==1){
+            document.getElementById('loginBtn').classList.add('mkhidden')
+            document.getElementById('logoutBtn').classList.remove('mkhidden')
+        }
+        function logout(){
+            localStorage.clear()
+            window.location.reload()
+        }
+    </script>
+</html>

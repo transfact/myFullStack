@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h3>동적 파일 업로드,비동기식-axios</h3>
+        <form onsubmit="fileupload(event)" name="axiosForm">
+            <input type="file" name="dynamic_files" multiple /><br/>
+            <button type ='submit'>업로드</button> 
+        </form>
+        <br>
+        <div>이미지</div>
+        <div class="result"></div>
+    
+    <script>
+        const resultBox = document.querySelector(".result")
+        async function fileupload(event){
+            event.preventDefault();
+            const form = document.forms['axiosForm']
+            const formDatas= new FormData()
+            const files = form.dynamic_files.files
+            console.log(files)
+            for(let i =0 ; i<files.length; i++){
+                formDatas.append(`array_files`,files[i])
+            }
+            const result= await axios({
+                url : "/multiAxios",
+                method : "POST",
+                data : formDatas,
+                Headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+            console.log(result.data)
+            const filepaths= result.data.filePath
+            console.log(resultBox)
+            for(let j=0; j<filepaths.length;j++){
+                resultBox.innerHTML+=`<img src = ${filepaths[j]}>`
+            }
+            console.log(resultBox)
+        }
+    </script>
+    
+    </body>
+</html>

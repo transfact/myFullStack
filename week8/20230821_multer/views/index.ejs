@@ -7,6 +7,64 @@
         <title>Document</title>
     </head>
     <body>
-        <div>코드작성</div>
+        <!-- <h3>동기식-single</h3>
+        <form action="/upload" method = 'post' enctype="multipart/form-data">
+            <input type="file" name="userfile"/><br/>
+            <input type = 'text' name ='title'/><br/>
+            <button type ='submit'>업로드</button> 
+        </form>
+        <br>
+        <h3>동기식-array_multi</h3>
+        <form action="/upload/array" method = 'post' enctype="multipart/form-data">
+            <input type="file" name="userfiles" multiple/><br/>
+            <input type = 'text' name ='title'/><br/>
+            <button type ='submit'>업로드</button> 
+        </form>
+
+        <br>
+        <h3>동기식-field_multi</h3>
+        <form action="/upload/field" method = 'post' enctype="multipart/form-data">
+            <input type="file" name="userfield1" multiple/><br/>
+            <input type = 'text' name ='title'/><br/>
+            <input type="file" name="userfield2" multiple/><br/>
+            <input type = 'text' name ='title'/><br/>
+            <button type ='submit'>업로드</button> 
+        </form> -->
+        <!-- onclick 써도됨 -->
+        <h3>동적 파일 업로드,비동기식-axios</h3>
+        <form onsubmit="fileupload(event)" name="axiosForm">
+            <input type="file" name="dynamic" /><br/>
+            <input type = 'text' name ='title'/><br/>
+            <button type ='submit'>업로드</button> 
+        </form>
+        <br>
+        <div>이미지</div>
+        <div class="result"></div>
+<script>
+    const resultBox = document.querySelector(".result")
+        async function fileupload(event){
+            //기본동작을 막음.
+            event.preventDefault();
+            const title = document.querySelector("#title").value
+            const file = document.querySelector("#dynamic").files[0] // files는 배열임 그래서 [0]붙임
+            const form_data= new formData()
+            form_data.append('title',title)
+            //file을 무조건 마지막으로 한다.(multer 기본 사양)
+            form_data.append("dynamic",file)
+
+            const res = await axios({
+                url : "/upload/axios",
+                method : "POST",
+                data : form_data,
+                headers:{
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+            console.log(res)
+            resultBox.innerHTML=`<img src = ${res.data.path}>`
+
+        }
+    </script>
     </body>
+    
 </html>

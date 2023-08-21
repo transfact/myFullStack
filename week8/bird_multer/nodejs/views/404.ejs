@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const resultBox = document.querySelector(".result")
+        async function fileupload(event){
+            event.preventDefault();
+            const form = document.forms['axiosForm']
+            const formDatas= new FormData()
+            const files = form.dynamic_files.files
+            console.log(files)
+            for(let i =0 ; i<files.length; i++){
+                formDatas.append(`array_files`,files[i])
+            }
+            const result= await axios({
+                url : "/multiAxios",
+                method : "POST",
+                data : formDatas,
+                Headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+            console.log(result.data)
+            const filepaths= result.data.filePath
+            for(let j=0; j<filepaths.length;j++){
+                resultBox.innerHTML+=`<img style="width : 300px" src = ${filepaths[j]}>`
+            }
+            console.log(resultBox)
+        }
+    </script>
+    
+</body>
+</html>

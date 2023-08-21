@@ -20,14 +20,19 @@
             <button id="logoutBtn" type="button" class="mkhidden" onclick="logout()">로그아웃</button>
         </div>
         <div>
-            <button type="button" onclick="location.href='/toSignUp'">회원가입</button>
+            <button id="signup" type="button" onclick="location.href='/toSignUp'">회원가입</button>
+            <div id="userid"></div>
+            <div id="name"></div>
         </div>
     </body>
     <script>
         
         if(localStorage.getItem("login")==1){
             document.getElementById('loginBtn').classList.add('mkhidden')
+            document.getElementById('signup').classList.add('mkhidden')
             document.getElementById('logoutBtn').classList.remove('mkhidden')
+            document.getElementById('userid').innerText="아이디 : "+localStorage.getItem("userid")
+            document.getElementById('name').innerText="이름 : "+ localStorage.getItem("name")
         }
         function logout(){
             localStorage.clear()

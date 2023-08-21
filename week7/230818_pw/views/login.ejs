@@ -32,9 +32,12 @@
                         id,pw
                     }
                 })
+                console.log(result.data.result)
                 if(result.data.code==1){
                     alert("로그인성공")
                     localStorage.setItem("login","1")
+                    localStorage.setItem("userid",result.data.result.userid)
+                    localStorage.setItem("name",result.data.result.name)
                     location.href="/"
                 }else{
                     alert("로그인실패")

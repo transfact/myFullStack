@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>MVC</h1>
+        <form action="/" name="infos" method="post" >
+            <input type="text" name="info_id" placeholder="아이디 입력">
+            <input type="text" name="info_name" placeholder="이름 입력">
+            <input type="text" name="info_major" placeholder="전공입력">
+            <input type="text" name="info_sex" placeholder="남 또는 여 입력">
+            <button type="submit" >제출</button>
+        </form>
+
+        <ul>
+            <% for(let i=0; i<data.length; i++){ %>
+                <li> 
+                    <b><%= data[i].id %></b>
+                    <b><%= data[i].name %></b>
+                    <b><%= data[i].major %></b>
+                    <b><%= data[i].sex %></b>
+                </li>
+            <% } %>
+        </ul>
+
+
+    <script>
+        function reloader(){
+            window.location.reload();
+        }
+    </script>
+    </body>
+</html>

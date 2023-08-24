@@ -40,6 +40,9 @@ exports.LogIn = async (req,res)=>{
         console.log("login fails")
         res.json({ result: false, message: '아이디가 일치하지 않습니다' });
         return;
+    }else if(result==null){
+        res.json({ result: false, message: '아이디가 일치하지 않습니다' });
+        return ;
     }
     const compare = comparePassword(pw, result.pw);
     if(compare){

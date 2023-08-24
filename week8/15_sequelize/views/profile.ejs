@@ -18,7 +18,8 @@
         </form>
         <script>
             async function destroy(userid){
-                const res= await axios({
+                if(confirm("회원탈퇴 하시겠습니까?")){
+                    const res= await axios({
                     method: 'Delete',
                     url: '/profile/del',
                     data: {userid}
@@ -27,6 +28,8 @@
                     alert("탈퇴되었습니다.")
                 }
                 location.href="/"
+                }
+
             }
 
 

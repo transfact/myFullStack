@@ -57,7 +57,11 @@ const post_signin =async (req, res) => {
     const {userid,pw}=req.body
     const res1= await User.findOne({where : {userid : userid}})
     console.log(res1)
-
+    if(!res1){
+        console.log("login fails")
+        res.json({ result: false, message: '아이디가 일치하지 않습니다' });
+        return;
+    }
     const result =  bcrypt.compareSync(pw,res1.pw)
     if (result) {
         console.log("성공", res1)

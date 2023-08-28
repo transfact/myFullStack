@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>멤버리스트</h1>
+    <div>이용자 <%= name %></div>
+    <% for(let i =0; i<data.length;i++){ %>
+        <div>
+            <p>이름 : <%=data[i].name %>  아이디: <%=data[i].userid %></p>
+        </div>
+        <% } %>
+
+        <% var test = data[0]; %>
+ <script>
+    
+        var getTest = "<%- data[0]  %>";  //var test is now assigned to getTest which will only work on browsers
+        console.log(getTest)
+        alert(getTest);  // successfully prints the string on browser
+    </script>
+</body>
+</html>

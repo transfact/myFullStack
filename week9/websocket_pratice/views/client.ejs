@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>투표하기</h1>
+        <div><button type="button" onclick="btnClicked('a')">A안</button><button  type="button" onclick="btnClicked('b')">B안</button></div>
+        <h3>투표 결과</h3>
+        <div>A 타입 : <span id = "aCount">0</span></div>
+        <div>B 타입 : <span id = "bCount">0</span></div>
+        <script>
+            const socket = new WebSocket('ws://localhost:8000');
+            //A안 가져오기
+
+
+            //서버에 연결 요청
+            socket.addEventListener('open', (event) => {
+                //send() 함수는 백엔드로 메세지를 전송
+                console.log('서버에 연결되었습니다');
+            });
+            //메세지 주고 받음
+            socket.addEventListener('message', (event) => {
+                console.log(event.data)
+                const {A, B} = JSON.parse(event.data)
+                document.querySelector('#aCount').innerHTML = A
+                document.querySelector('#bCount').innerHTML = B
+            });
+            //오류이벤트
+            socket.addEventListener('error', (event) => {
+                console.log('오류가 발생하였습니다', event.error);
+            });
+
+            //종료이벤트
+            socket.addEventListener('close', () => {
+                console.log('서버와 연결이 종료됨');
+            });
+            function btnClicked(char){
+                const aCount = Number(document.querySelector('#aCount').innerHTML);
+                const bCount = Number(document.querySelector('#bCount').innerHTML);
+                if(char=='a'){
+                    socket.send(JSON.stringify({ A: aCount+1, B: bCount }));
+                }else{
+                    socket.send(JSON.stringify({ A: aCount, B: bCount+1 }));
+                }
+            }
+
+        </script>
+    </body>
+</html>

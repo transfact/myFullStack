@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+</head>
+<body>
+    <ul>
+    </ul>
+    <form id = 'chat'>
+        <input type="text" id="nickname" placeholder="닉네임 입력">
+        <input type="text" id="message" placeholder="message입력">
+        <button>채팅</button>
+    </form>
+
+    <script>
+        const chatForm = document.querySelector("#chat")
+        const ul = document.querySelector("ul")
+        var nickname='익명'
+        var counter =0;
+        const socket = new WebSocket("ws://localhost:8000")
+        console.log("hi socket",socket)
+        socket.addEventListener("open",(event)=>{
+            //서버간 통신
+            console.log("서버와 연결됨")
+        })
+        socket.addEventListener('message' , (event)=>{
+            const li = document.createElement("li")
+            li.textContent=event.data
+            ul.appendChild(li)
+        })
+        socket.addEventListener('error',(event)=>{
+            console.log("오류발생 ",event.err)
+        })
+
+        socket.addEventListener('close',(nickname1)=>{
+            socket.send(JSON.stringify({nickname: nickname1}))
+            console.log("서버와 연결 종료")
+        })
+
+        //form 이벤트
+        chatForm.addEventListener('submit', (event)=>{
+            event.preventDefault()
+            const msg = chatForm.querySelector("#message")
+            const nickname = chatForm.querySelector("#nickname")
+            nickname1 = nickname.value
+            if(counter==0){
+                socket.send(JSON.stringify({msg :"님이 입장했습니다.",nickname: nickname.value}))
+                counter+=1
+            }
+            socket.send(JSON.stringify({msg :msg.value,nickname: nickname.value+"님 : "}))
+            msg.value='';
+        })
+
+
+        window.addEventListener('beforeunload',(event)=>{
+            const msg = chatForm.querySelector("#message")
+            const nickname = chatForm.querySelector("#nickname")
+            socket.send(JSON.stringify({msg :"이(가) 채팅방을 떠났습니다.",nickname: nickname.value+"님"}))
+            return false
+        })
+
+    </script>
+</body>
+
+</html>

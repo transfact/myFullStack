@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <title>클라이언트</title>
+    <style>
+        .chatBox{
+            background-color: skyblue;
+            width: 500px;
+            height: 500px;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>채팅방</div>
+    <div class="chatBox">
+        <!-- <ul>
+
+        </ul> -->
+    </div>
+
+    <form id="chat">
+        <input type="text" id = 'user' placeholder="유저ID">
+        <input type="text" id = 'message' placeholder="채팅내용"><br>
+        <button type="submit">채팅</button>
+    </form>
+    <!-- 
+    <h2>과제1(임시)</h2>
+    <button type="button" onclick="sendMsg('hi')">hi</button>
+    <button type="button" onclick="sendMsg('study')">study</button>
+    <button type="button" onclick="sendMsg('bye')">bye</button>
+
+    <div><span id = "assignment1"></span></div> -->
+
+
+    <script>
+        const chatForm = document.querySelector("#chat")
+        const chatBox = document.querySelector(".chatBox")
+        const ul = document.querySelector("ul")
+        const socket=io();
+        //이벤트 생성                 처음 이벤트 명 뺴고는 전부 콜백함수의 arg가 된다.
+        socket.emit('open_message',{name :"admin",message : 'Hello Server'})
+        socket.on("backend_message",(msg)=>{
+            const div1 = document.createElement("div")
+            const span = document.createElement("span")
+            span.textContent=msg.message
+            span.style.backgroundColor='white'
+            span.style.borderRadius = "10%"
+            div1.style.textAlign = 'left'
+            div1.style.marginBottom = '5px'
+
+            div1.appendChild(span)
+            chatBox.appendChild(div1)
+            // const li = document.createElement("li")
+            // li.textContent = `${msg.name} : ${msg.message}`
+            // ul.appendChild(li)
+        })
+        socket.on('assignment1_answer',(msg)=>{
+            const span = document.querySelector("#assignment1")
+            span.textContent = `${msg.name} : ${msg.message}`
+        })
+
+        //폼 이벤트
+
+        chatForm.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            const user = chatForm.querySelector("#user")
+            const message = chatForm.querySelector("#message")
+            const div1 = document.createElement("div")
+            const span = document.createElement("span")
+            span.textContent=message.value
+            span.style.backgroundColor='yellow'
+            span.style.borderRadius = "10%"
+            div1.style.marginBottom = '5px'
+            div1.style.textAlign = 'right'   
+            div1.appendChild(span)
+            chatBox.appendChild(div1)
+            socket.emit("form-message", {name : user.value,message : message.value})
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        function sendMsg(string){
+            if(string=="hi"){
+                console.log("hi")
+                socket.emit("assignment1",{message : "안녕하세요"})
+            }else if (string=="study"){
+                console.log("study")
+                socket.emit("assignment1",{message : "공부할게요"})
+            }else{
+                console.log("bye")
+                socket.emit("assignment1",{message : "안녕히계세요"})
+            }
+        }
+
+    </script>
+</body>
+</html>

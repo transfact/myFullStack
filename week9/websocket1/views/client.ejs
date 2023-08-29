@@ -46,14 +46,14 @@
             const nickname = chatForm.querySelector("#nickname")
             nickname1 = nickname.value
             if(counter==0){
-                socket.send(JSON.stringify({msg :"님이 입장했습니다.",nickname: nickname.value}))
+                socket.send(JSON.stringify({msg :"님이 입장했습니다.",nickname: nickname1}))
                 counter+=1
             }
             socket.send(JSON.stringify({msg :msg.value,nickname: nickname.value+"님 : "}))
             msg.value='';
         })
 
-
+        
         window.addEventListener('beforeunload',(event)=>{
             const msg = chatForm.querySelector("#message")
             const nickname = chatForm.querySelector("#nickname")

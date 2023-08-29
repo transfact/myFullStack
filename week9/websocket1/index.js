@@ -1,6 +1,8 @@
 const ws= require("ws")
+const http = require('http')
 const express  = require('express')
 const PORT = 8000;
+
 const app =express()
 .set("view engine",'ejs')
 .set('views','./views')
@@ -8,12 +10,11 @@ const app =express()
     res.render("client");
 })
 
-const server = app.listen(PORT,()=>{
-    console.log(`http://localhost:${PORT}`)
-})
+//get할때 socket이 에러날수 있다고 합니다. 그래서 분리
+const server = http.createServer(app)
+const wss = new ws.Server({server},)
 
 
-const wss = new ws.Server({server : server},)
 //wss.open 0 => 연결시도중
 //          1=> 열림
 //         2 =>닫히는 중
@@ -30,6 +31,7 @@ const sockets=[]
 wss.on("connection", (socket)=>{
     console.log("client 연결됨")
     console.log(wss.address())
+    
     sockets.push(socket)
     // console.log("hi socket",socket)
     //메세지 이벤트
@@ -55,3 +57,10 @@ wss.on("connection", (socket)=>{
         console.log(message)
     })
 })
+
+
+server.listen(PORT,()=>{
+    console.log(`http://localhost:${PORT}`)
+})
+
+

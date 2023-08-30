@@ -8,8 +8,8 @@
     <style>
         .chatBox{
             background-color: skyblue;
-            width: 500px;
-            height: 500px;
+            width: 50%;
+            height: 75vh;
             padding: 10px;
             overflow: auto;
         }
@@ -21,17 +21,17 @@
 <body>
     <div>채팅방</div>
     <div class="chatBox">
-        <!-- <ul>
 
-        </ul> -->
     </div>
     <form id = 'chat'>
         <select name="nicknames" id ='nicknames'>
+            <option></option>
         </select>
         <input type="text" id = 'user' placeholder="유저ID">
         <input type="text" id = 'message' placeholder="채팅내용"><br>
         <button>채팅</button>
         <button type="button" onclick="leave()">로그아웃</button>
+        <button type ="button" onclick="getOut()">강퇴</button>
     </form>
 
 
@@ -40,23 +40,28 @@
         const chatForm = document.querySelector("#chat")
         const chatBox = document.querySelector(".chatBox")
         const ul = document.querySelector("ul")
-        let myNickname= null
+        const options =document.querySelector("#nicknames")
+        const user = chatForm.querySelector("#user")
+        const message = chatForm.querySelector("#message")
+        let myNickname
         //클라이언트 소켓 연결
         const socket = io();
         let chatRoom;
         //채팅방 생성
-        while(!chatRoom){
+        while(!chatRoom && !myNickname){
             chatRoom = prompt("채팅방명 입력")
+            myNickname = prompt("닉네임입력")
         }
+        document.querySelector("#user").value = myNickname
+        socket.emit("join", {name:chatRoom,nickname:myNickname})
 
-        socket.emit("join", {name:chatRoom})
-        console.log(socket)
-        //사용브라우저 접속시 이벤트
+        //사용브라우저 접속/종료시 이벤트
         socket.on("create",(res)=>{
             const div = document.createElement('div')
             const br = document.createElement('br')
             div.textContent = res;
             div.style.color='gray'
+            div.style.textAlign='center'
             chatBox.appendChild(div)
             chatBox.appendChild(br)
         })
@@ -64,7 +69,168 @@
         //서버에서 보내주는 값 
         socket.on("chat2",(res)=>{
             console.log(res)    
+            makeMessage("white","message2","left",res.user,res.message,null,false)
+        })
+
+//귓속말
+        socket.on("chat3",(res)=>{
+            makeMessage("pink","message3","left",res.user,res.message,null,false)
+        })
+        socket.on("getId",(nicknames)=>{
+            console.log(nicknames)
+            options.textContent="";
+            const initOption = document.createElement("option")
+            initOption.value="all"
+            initOption.innerText="전체"
+            options.appendChild(initOption)
+            Object.keys(nicknames).forEach((nk)=>{
+                if(nk!=myNickname){
+                const option = document.createElement("option")
+                option.value=nicknames[nk]
+                option.innerText=nk
+                options.appendChild(option)
+                }
+            })
+                    //강퇴 보내주는 값 
+            socket.on("fired",()=>{
+                console.log("fired")  
+                socket.emit("leave")
+                location.reload()  
+            })
+        })
+
+        //폼 이벤트
+        chatForm.addEventListener("submit",(event)=>{
+            event.preventDefault()
+            if(message.value==""){
+                return;
+            }
+            const selected = options.options[options.selectedIndex].value
+            if(user.value!=myNickname){
+                myNickname==user.value
+            }
+            if(selected=="all"){
+                console.log("mynickname:",user.value)
+                makeMessage("yellow",'message2',"right",user.value,message.value,"all",true)
+            }else{
+                makeMessage("pink","message3","right",user.value,message.value,selected,true)
+ 
+            }
+        })
+        function leave(){
+            socket.emit("leave")
+            location.reload()
+        }
+        function makeMessage(color,command,align,userName,messageValue,selected,sendTrue){
             const div1 = document.createElement("div")
+            const span = document.createElement("span")
+            const namespan= document.createElement("span")
+
+            span.textContent=messageValue
+            span.style.backgroundColor=color
+            span.style.borderRadius = "10%"
+
+            namespan.textContent=userName+" "
+            namespan.style.verticalAlign='top'
+            namespan.style.fontSize='5px'
+            namespan.style.color='gray'
+            
+            
+            const br = document.createElement('br')
+            div1.style.textAlign = align
+            if(align=="right"){
+                div1.appendChild(namespan)   
+                div1.appendChild(span)
+            }else{
+                div1.appendChild(span)   
+                div1.appendChild(namespan)
+            }
+
+            chatBox.appendChild(div1)
+            chatBox.appendChild(br)
+
+            if(sendTrue && selected=="all"){
+                console.log("allnickname",userName)
+                socket.emit(command, userName,messageValue)
+                message.value='';
+            }else if(sendTrue){
+                socket.emit(command, userName,messageValue,selected)
+                message.value='';
+            }
+
+        }
+        function getOut(){
+            const selected = options.options[options.selectedIndex].innerText
+            socket.emit("getOut",selected)
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+span.textContent=message.value
+span.style.backgroundColor='yellow'
+span.style.borderRadius = "10%"
+
+namespan.textContent=user.value+" "
+namespan.style.verticalAlign='top'
+namespan.style.fontSize='5px'
+namespan.style.color='gray'
+
+// div1.style.marginBottom = '5px'
+const br = document.createElement('br')
+div1.style.textAlign = 'right'
+div1.appendChild(namespan)   
+div1.appendChild(span)
+chatBox.appendChild(div1)
+chatBox.appendChild(br)
+socket.emit("message2", user.value,message.value)
+message.value='';
+               span.textContent=message.value
+                span.style.backgroundColor='pink'
+                span.style.borderRadius = "10%"
+
+                namespan.textContent=user.value+" "
+                namespan.style.verticalAlign='top'
+                namespan.style.fontSize='5px'
+                namespan.style.color='gray'
+
+                // div1.style.marginBottom = '5px'
+                const br = document.createElement('br')
+                div1.style.textAlign = 'right'
+                div1.appendChild(namespan)   
+                div1.appendChild(span)
+                chatBox.appendChild(div1)
+                chatBox.appendChild(br)
+                socket.emit("message3", user.value,message.value,selected)
+                message.value='';
+
+           const div1 = document.createElement("div")
+            const span = document.createElement("span")
+            const namespan= document.createElement("span")
+            
+            
+            namespan.textContent=res.user
+            namespan.style.verticalAlign='top'
+            namespan.style.fontSize='5px'
+            namespan.style.color='gray'
+            
+            
+            span.textContent=res.message+" "
+            span.style.backgroundColor='pink'
+            span.style.borderRadius = "10%"
+            div1.style.textAlign = 'left'
+            // div1.style.marginBottom = '5px'
+            div1.appendChild(span)
+            div1.appendChild(namespan)
+            const br = document.createElement('br')
+            chatBox.appendChild(div1)
+            chatBox.appendChild(br)
+
+
+
+
+                        const div1 = document.createElement("div")
             const span = document.createElement("span")
             const namespan= document.createElement("span")
             
@@ -82,49 +248,7 @@
             // div1.style.marginBottom = '5px'
             div1.appendChild(span)
             div1.appendChild(namespan)
-            chatBox.appendChild(div1)
-        })
-        socket.on("getId",(room_participants,nicknames)=>{
-            console.log(room_participants)
-            console.log(nicknames)
-        })
-
-        //폼 이벤트
-        chatForm.addEventListener("submit",(event)=>{
-            event.preventDefault()
-
-            const user = chatForm.querySelector("#user")
-            const message = chatForm.querySelector("#message")
-            const div1 = document.createElement("div")
-            const span = document.createElement("span")
-            const namespan= document.createElement("span")
-            span.textContent=message.value
-            span.style.backgroundColor='yellow'
-            span.style.borderRadius = "10%"
-
-            namespan.textContent=user.value+" "
-            namespan.style.verticalAlign='top'
-            namespan.style.fontSize='5px'
-            namespan.style.color='gray'
-
-            // div1.style.marginBottom = '5px'
             const br = document.createElement('br')
-            div1.style.textAlign = 'right'
-            div1.appendChild(namespan)   
-            div1.appendChild(span)
             chatBox.appendChild(div1)
             chatBox.appendChild(br)
-            socket.emit("message2", user.value,message.value)
-            message.value='';
-        })
-        
-    
-        
-        function leave(){
-            socket.emit("leave")
-            location.reload()
-        }
-
-    </script>
-</body>
-</html>
+-->

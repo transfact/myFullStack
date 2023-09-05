@@ -1,7 +1,7 @@
 const express = require('express');
 const multer =require('multer')
 const aws = require("aws-sdk")
-const multers3= require("multer-sdk")
+const multers3= require("multer-s3")
 const path=require('path')
 const app = express();
 const PORT = 8080;
@@ -31,6 +31,9 @@ const upload = multer({
             cb(null,{fieldName: file.fieldName})
         },
         key(req, file, cb) {
+
+            // https://hwr-bucket.s3.ap-northeast-2.amazonaws.com/1693843848259_kali.jpg
+            //즉, https://hwr-bucket.s3.ap-northeast-2.amazonaws.com/{파일명으로 저장.}
             cb(null, `${Date.now()}_${path.basename(file.originalname)}`) // original 폴더안에다 파일을 저장
          },
     }),

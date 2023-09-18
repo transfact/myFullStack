@@ -1,3 +1,5 @@
+
+const {writeFile} =require("fs")
 const express = require("express")
 const http = require("http")
 const socketIO =require("socket.io")
@@ -6,6 +8,7 @@ const PORT = 8080
 const server = http.createServer(app)
 //https://velog.io/@yogjin/express-app.listen-%EA%B3%BC-server.listen%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90
 const io = socketIO(server)
+
 
 // const s= new Set()
 // s.add("12")
@@ -79,17 +82,23 @@ io.on("connection",(socket)=>{
         console.log(msgObject)
         socket.emit("backend_message",msgObject)
     })
-    socket.on('leave',()=>{
+    socket.on('leave',(id)=>{
         socket.to(socket.room).emit("create",`${socket.myNickname}님이 퇴장하였습니다.`)
         socket.leave(socket.room)
-    })
-    socket.on('getOut',(id)=>{
-        console.log("fired")
-        
-        socket.to(nicknames[socket.room][id]).emit('fired')
         delete nicknames[socket.room][id]
         io.to(socket.room).emit('getId',nicknames[socket.room])
     })
+    socket.on('getOut',(id)=>{
+        console.log("fired")
+        socket.to(nicknames[socket.room][id]).emit('fired')
+    })
+
+    socket.on("upload", (file) => {
+        console.log(file); // <Buffer 25 50 44 ...>
+        io.to(socket.room).emit('Images',file)
+        // save the content to the disk, for example
+
+      });
     // socket.on("assignment1",(msgObject)=>{
     //     console.log(msgObject)
     //     io.emit("assignment1_answer",{name:"server" ,message : msgObject.message})

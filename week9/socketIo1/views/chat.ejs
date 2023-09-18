@@ -32,6 +32,7 @@
         <button>채팅</button>
         <button type="button" onclick="leave()">로그아웃</button>
         <button type ="button" onclick="getOut()">강퇴</button>
+        <input type="file" onchange="upload(this.files)">
     </form>
 
 
@@ -94,10 +95,16 @@
                     //강퇴 보내주는 값 
             socket.on("fired",()=>{
                 console.log("fired")  
-                socket.emit("leave")
+                socket.emit("leave",myNickname)
                 location.reload()  
             })
+            socket.on("Images",(img)=>{
+                console.log("img:",img)  
+
+                 })
+            
         })
+        
 
         //폼 이벤트
         chatForm.addEventListener("submit",(event)=>{
@@ -163,6 +170,14 @@
             const selected = options.options[options.selectedIndex].innerText
             socket.emit("getOut",selected)
         }
+
+        function upload(files) {
+            console.log(files[0])
+            socket.emit("upload", files[0])
+
+      }
+
+
     </script>
 </body>
 </html>

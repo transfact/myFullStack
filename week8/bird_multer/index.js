@@ -31,12 +31,16 @@ const upload = multer({
             cb(null,{fieldName: file.fieldname})
         },
         key(req, file, cb) {
+
+            // https://hwr-bucket.s3.ap-northeast-2.amazonaws.com/1693843848259_kali.jpg
+            //즉, https://hwr-bucket.s3.ap-northeast-2.amazonaws.com/{파일명} 으로 경로 저장하는 코드 필요
             cb(null, `${Date.now()}_${path.basename(file.originalname)}`) // original 폴더안에다 파일을 저장
          },
     }),
     limits : {
         fileSize: 5 * 1024 * 1024, //5mb
     }
+
 })
 
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -65,7 +69,7 @@ app.post('/multiAxios',  (req,res)=>{
           console.log(err)
           return;
         }
-       
+       //파일 원래 경로 리턴
         filePathArray=[]
         for(let i=0; i<req.files.length; i++){
             filePathArray[i]=req.files[i].path
@@ -74,8 +78,6 @@ app.post('/multiAxios',  (req,res)=>{
             "filePath" :filePathArray
           });
     })
-
-
 })
 //server open
 app.listen(PORT, () => {

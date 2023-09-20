@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import App from './App';
-// import { App230919 } from './App/*';
-import { App230919 } from './App/AppAdmin';
+// import { App230919,App230919 } from './App/*';
+import { App230920 } from './App/AppAdmin';
 
 //메인이 될곳을 root로 정한것이다. root에서부터 리액트가 시작된다고 말한것이다.
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <App230919 />
+        <App230920 />
     </React.StrictMode>
 );
 

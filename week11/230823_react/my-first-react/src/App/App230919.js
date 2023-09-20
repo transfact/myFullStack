@@ -1,14 +1,14 @@
-import ClassComponent from './component_230919/ClassComponent';
-import FunctionComponent from './component_230919/FunctionComponent';
-import BugComponent from './component_230919/BugComponent';
-import TestOneClassComponent from './component_230919/TestOneClassComponent';
-import TestTwoClassComponent from './component_230919/TestTwoClassComponent';
-import MultiplicationTableGrid from './component_230919/MultiplicationTableComponent';
-import FoodClassComponent from './component_230919/FoodClassComponent';
-import BookComponent from './component_230919/BookComponent';
-import Event from './component_230919/Event';
-import EventClass from './component_230919/EventClass';
-import ClassMessageCompo from './component_230919/ClassMessageCompo';
+import ClassComponent from '../component_230919/ClassComponent';
+import FunctionComponent from '../component_230919/FunctionComponent';
+import BugComponent from '../component_230919/BugComponent';
+import TestOneClassComponent from '../component_230919/TestOneClassComponent';
+import TestTwoClassComponent from '../component_230919/TestTwoClassComponent';
+import MultiplicationTableGrid from '../component_230919/MultiplicationTableComponent';
+import FoodClassComponent from '../component_230919/FoodClassComponent';
+import BookComponent from '../component_230919/BookComponent';
+import Event from '../component_230919/Event';
+import EventClass from '../component_230919/EventClass';
+import ClassMessageCompo from '../component_230919/ClassMessageCompo';
 
 function App230919() {
     return (

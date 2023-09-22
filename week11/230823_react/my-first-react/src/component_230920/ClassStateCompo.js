@@ -15,8 +15,6 @@ class ClassStateCompo extends React.Component {
     // }
 
     handleIncrement = () => {
-        // this.setState({ number: this.state.number + 1 });
-        //this.setState((prevState) =>{return {number: prevState.number + 1}});
         this.setState((prevState) => ({ number: prevState.number + 1 }));
         this.setState((prevState) => ({ number: prevState.number + 1 }));
     };

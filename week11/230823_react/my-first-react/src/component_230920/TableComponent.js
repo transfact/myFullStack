@@ -2,6 +2,7 @@ import React from 'react';
 class ClassFormStateCompo extends React.Component {
     render() {
         const { posts, searchWord, selectOption } = this.props;
+
         return (
             <table>
                 <thead>
@@ -13,7 +14,7 @@ class ClassFormStateCompo extends React.Component {
                 </thead>
                 <tbody>
                     {posts
-                        .filter((post) => searchWord == '' || post.title == searchWord)
+                        .filter((post) => searchWord == '' || post.title.includes(searchWord))
                         .map((post, idx) => {
                             return selectOption == 'all' || selectOption == post.writer ? (
                                 <tr key={idx}>

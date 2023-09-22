@@ -28,6 +28,7 @@ class ClassSearchCompo extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSearch}>
+                {/* 여기서 this.setState({keyword: e.target.value}) 도 가능 */}
                 <input type="text" placeholder="검색" value={this.state.keyword} onChange={this.handleSearchChange}></input>
                 <button type="submit">검색</button>
                 <button type="button" onClick={this.clearBtn}>

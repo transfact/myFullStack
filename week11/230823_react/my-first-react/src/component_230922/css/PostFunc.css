@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+}
+
+h1 {
+    background-color: skyblue;
+    color: aliceblue;
+    text-align: center;
+}
+
+.cardDiv {
+    border-radius: 10px;
+    background-color: skyblue;
+
+    margin: auto;
+    margin-top: 30px;
+    width: 80%;
+    height: 150px;
+    border: 1px solid skyblue;
+    box-shadow: 2px 2px 2px 2px skyblue;
+}
+
+.cardTitle {
+    color: black;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 20px;
+}
+.cardTitle > span {
+    color: gray;
+}
+.cardBody {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 23px;
+}

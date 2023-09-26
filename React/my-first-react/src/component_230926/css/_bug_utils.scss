@@ -1,0 +1,8 @@
+@mixin setCirclePosition($top, $left) {
+    top: $top;
+    left: $left;
+}
+@mixin setCircleSize($width, $height) {
+    width: $width;
+    height: $height;
+}

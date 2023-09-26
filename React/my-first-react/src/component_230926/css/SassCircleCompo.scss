@@ -1,0 +1,22 @@
+@import './circle_utils';
+.main {
+    background-color: white;
+    position: relative;
+}
+.circle {
+    &.pink {
+        @include circle(pink);
+        @include setCirclePosition(0px, 0px);
+        @include rotateCircle(0px, 50px, 'pink');
+    }
+    &.yellow {
+        @include circle(yellow);
+        @include setCirclePosition(0px, 50px);
+        @include rotateCircle(50px, 100px, 'yellow');
+    }
+    &.green {
+        @include circle(green);
+        @include setCirclePosition(0px, 100px);
+        @include rotateCircle(100px, 150px, 'green');
+    }
+}

@@ -1,0 +1,17 @@
+//이 파일은 컴파일되지 않는 파일임.
+//변수/함수는 Sass파일에 포함될 필요가 없음.
+//배열
+$colors: (
+    color1: red,
+    color2: orange,
+    color3: yellow,
+    color4: green,
+    color5: blue,
+    color6: navy,
+    color7: purple,
+);
+//
+@mixin box($size) {
+    width: $size;
+    height: $size + 50px;
+}

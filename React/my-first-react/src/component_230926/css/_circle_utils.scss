@@ -1,0 +1,43 @@
+$pink: pink;
+$yellow: yellow;
+$green: green;
+
+@mixin circle($color) {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color;
+}
+
+@mixin setCirclePosition($left, $top) {
+    top: $top;
+    left: $left;
+}
+
+@mixin rotateCircle($starter, $distance, $name) {
+    animation-name: #{$name};
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    @keyframes #{$name} {
+        0% {
+            left: 0px;
+            top: $starter;
+        }
+        25% {
+            left: $distance;
+            top: $starter;
+        }
+        50% {
+            left: $distance;
+            top: $starter + $distance;
+        }
+        75% {
+            left: 0;
+            top: $starter + $distance;
+        }
+        100% {
+            top: $starter;
+        }
+    }
+}

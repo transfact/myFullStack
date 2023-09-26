@@ -1,0 +1,14 @@
+@import './utils.scss';
+
+.SassCompo {
+    display: flex;
+    .box {
+        @include box(100px);
+        border: 1px solid black;
+        @each $key, $color in $colors {
+            &.#{$color} {
+                background-color: $color;
+            }
+        }
+    }
+}

@@ -5,7 +5,7 @@ import PostFunc from '../component_230921/PostFunc';
 import TodoFunc from '../component_230921/TodoFunc';
 
 import LifeStyleClass from '../component_230921/LifeStyleClass';
-
+import React from 'react';
 function App230921() {
     return (
         <>
@@ -21,4 +21,4 @@ function App230921() {
     );
 }
 
-export default App230921;
+export default React.memo(App230921);

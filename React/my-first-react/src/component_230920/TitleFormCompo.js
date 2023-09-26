@@ -4,8 +4,20 @@ class TitleFormCompo extends React.Component {
         writer: '',
         title: '',
     };
+    writerRef = React.createRef();
+    titleRef = React.createRef();
     handleSubmit = (e) => {
         e.preventDefault();
+        if (this.state.writer == '') {
+            this.writerRef.current.focus();
+            console.log('writerREf');
+            return;
+        } else if (this.state.title == '') {
+            this.titleRef.current.focus();
+            console.log('titleREf');
+            return;
+        }
+
         this.props.onCreate({
             writer: this.state.writer,
             title: this.state.title,
@@ -25,9 +37,9 @@ class TitleFormCompo extends React.Component {
             <div>
                 <form name="texts" onSubmit={this.handleSubmit}>
                     <span>작성자 : </span>
-                    <input type="text" value={this.state.writer} onChange={this.handleChangeWriter} placeholder="작성자" required></input>
+                    <input type="text" ref={this.writerRef} value={this.state.writer} onChange={this.handleChangeWriter} placeholder="작성자"></input>
                     <span>제목 : </span>
-                    <input type="text" value={this.state.title} onChange={this.handleChangeTitle} placeholder="title" required></input>
+                    <input type="text" ref={this.titleRef} value={this.state.title} onChange={this.handleChangeTitle} placeholder="title"></input>
                     <button type="submit">제출</button>
                 </form>
             </div>

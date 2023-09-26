@@ -9,6 +9,7 @@ import BookComponent from '../component_230919/BookComponent';
 import Event from '../component_230919/Event';
 import EventClass from '../component_230919/EventClass';
 import ClassMessageCompo from '../component_230919/ClassMessageCompo';
+import React from 'react';
 
 function App230919() {
     return (
@@ -33,4 +34,4 @@ function App230919() {
     );
 }
 
-export default App230919;
+export default React.memo(App230919);

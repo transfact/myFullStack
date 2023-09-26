@@ -9,4 +9,4 @@ function App230922() {
         </>
     );
 }
-export default App230922;
+export default React.memo(App230922);

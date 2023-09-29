@@ -23,7 +23,6 @@ Object.keys(db).forEach((modelName) => {
 // db.User = temp;
 
 db.Todo = Todo(sequelize);
-console.log(sequelize);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

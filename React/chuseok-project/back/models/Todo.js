@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 
-const Model = (sequelize) => {
+const Todo = (sequelize) => {
     return sequelize.define('user', {
         id: {
             type: DataTypes.INTEGER,
@@ -20,4 +20,4 @@ const Model = (sequelize) => {
     });
 };
 
-export default Model;
+export default Todo;

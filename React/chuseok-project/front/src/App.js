@@ -5,6 +5,7 @@ function App() {
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [Input, setInput] = useState('');
+    const clicked = useRef([]);
 
     useEffect(() => {
         const todoData = async () => {
@@ -13,8 +14,15 @@ function App() {
                 url: 'http://localhost:8080/todos',
             });
             // console.log(res.data);
-            const clicker = res.data.map((value) => {
-                return value.clicked != 1 ? { ...value, clicked: 0 } : { ...value };
+
+            if (clicked.current.length == 0) {
+                for (let i = 0; i < res.data.length; i++) {
+                    clicked.current.push(0);
+                }
+            }
+
+            const clicker = res.data.map((value, idx) => {
+                return { ...value, clicked: clicked.current[idx] };
             });
             setTodos(clicker);
             setLoading(false);

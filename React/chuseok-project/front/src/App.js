@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 function App() {
@@ -6,7 +6,6 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [Input, setInput] = useState('');
     const clicked = useRef([]);
-
     useEffect(() => {
         const todoData = async () => {
             const res = await axios({
@@ -22,7 +21,7 @@ function App() {
             }
 
             const clicker = res.data.map((value, idx) => {
-                return { ...value, clicked: clicked.current[idx] };
+                return { ...value, clicked: clicked.current[idx], newInput: '' };
             });
             setTodos(clicker);
             setLoading(false);
@@ -76,14 +75,18 @@ function App() {
                                                 setTodos([...todos]);
                                             }}
                                         >
-                                            CLICKED {value.title}
+                                            <form>
+                                                <input value={value.title} onChange={(e) => {}} placeholder="newTitle"></input>
+                                            </form>
                                         </span>
                                     ) : (
                                         <span
                                             onClick={() => {
                                                 const idx = todos.findIndex((obj) => obj.id == value.id);
-                                                todos[idx].clicked = 1;
-                                                setTodos([...todos]);
+                                                if (todos[idx].done == 1) {
+                                                    todos[idx].clicked = 1;
+                                                    setTodos([...todos]);
+                                                }
                                             }}
                                         >
                                             {value.title}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: blueviolet;
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body>
+
+<div><span th:text="${name}"></span>님 환영합니다.</div>
+<div>성별은 <span th:text="${sex}"></span> 입니다</div>
+<div>생년월일은 <span th:text="${years} + '년' + ${months}+ '월' + ${days} + '일 입니다.'"></span></div>
+<div>취미는 <span th:text="${hobby}"></span>입니다.</div>
+<br>
+<br>
+<a href="/">홈으로 이동</a>
+
+</body>
+</html>

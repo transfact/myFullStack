@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .visible{
+            display:contents;
+        }
+        .invisible{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<form name="request-form" id="request-form">
+
+    <div>이름 <input type="text" name="name" required></div>
+
+    <fieldset><legend>성별</legend>
+        <input type="radio" value="남자" name="sex" required>
+        <span>남성</span>
+        <input type="radio" value="여자" name="sex" required>
+        <span>여성</span> </div>
+    </fieldset>
+    <br>
+
+    <fieldset>
+        <legend>생년월일</legend>
+        <select   name="years"  id="year-select">
+            <option th:each="year : ${#numbers.sequence(1998,2050)}" th:value="${year}"  th:text="${year}"></option>
+        </select>
+        <span>년</span>
+        <select   name="months" id="month-select"  onchange="changeValue(this)" >
+            <option  th:each="month : ${#numbers.sequence(1,12)}" th:value="${month}"  th:text="${month}"></option>
+        </select>
+        <span>월</span>
+
+        <select name="days" id="days">
+            <option th:each="days : ${#numbers.sequence(1,31)}" th:value="${days}"  th:text="${days}"></option>
+        </select>
+        <span>일</span>
+    </fieldset>
+
+    <br>
+    <fieldset><legend>관심사</legend>
+        <input type="checkbox" value="여행" name="hobby">
+        <span>여행</span>
+        <input type="checkbox" value="패션" name="hobby">
+        <span>패션</span>
+        <input type="checkbox" value="게임" name="hobby">
+        <span>게임</span>
+    </fieldset>
+    <br>
+    <button type="button" onClick="axiosPost()">회원가입</button>
+</form>
+
+
+</body>
+<script>
+    function axiosPost(){
+        var form = document.getElementById('request-form');
+        console.log(form.hobby);
+        const data= {
+            name : form.name.value,
+            sex : form.sex.value,
+            years : form.years.value,
+            months : form.months.value,
+            days : form.days.value,
+            hobby : form.hobby.value
+        }
+        console.log(data)
+        axios.post(`/pratice2/postForm2`,data)
+        .then((res)=>{
+            console.log( res );
+            console.log( 'axiosPost : ', res.data );
+        });
+    }
+    console.log("hello");
+    const changeValue = (target) => {
+        // 선택한 option의 value 값
+        console.log(target);
+        let month=target.value;
+        console.log(month);
+        let days = document.getElementById("days");
+        console.log(days);
+
+        if(['1','3','5','7','8','10','12'].includes(month) ){
+            $(days).children("*").addClass("visible")
+            $(days).children("*").removeClass("invisible")
+        }else if (['4','6','9','11'].includes(month)) {
+            $(days).children("*:nth-child(n+1):nth-child(-n+30)").removeClass("invisible")
+            $(days).children("*:nth-child(n+1):nth-child(-n+30)").addClass("visible")
+            $(days).children("*:nth-child(31)").addClass("invisible")
+            $(days).children("*:nth-child(31)").removeClass("visible")
+        }else if (month =2){
+            $(days).children("*:nth-child(n+29)").addClass("invisible")
+            $(days).children("*:nth-child(n+29)").removeClass("visible")
+        }
+
+    }
+</script>
+</html>

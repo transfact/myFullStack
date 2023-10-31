@@ -7,5 +7,37 @@
 <body>
 <h1>HI2</h1>
 <p th:text="'안녕하세요. '+${msg}">안녕반가워</p>
+<div th:switch="${hello}">
+    <p th:case="'msg2'">hello is this admin</p>
+    <p th:case="'manager'">hello is this manager</p>
+    <p th:case="*">hello is this wildcard</p>
+<!--  ${}변수 표현식 , @url 링크 표현 *{선택변수 표현식}  -->
+</div>
+<h3>
+    th:uText예시
+</h3>
+<p th:utext="${utext}">하이</p>
+<input th:value="${value}"/>
+<div th:with="temp=${with}" th:text="${temp}"></div>
+<a th:href="@{{id}(id=${link})}">네이버</a>
+<a th:href="@{${link}}">네이버</a>
+<div>실습1-----------------------------------------------</div>
+<div th:if="${age}<=10" >"10살이하"</div>
+<div th:unless="${age}<=10" >"10살 초과"</div>
+<div>실습2-----------------------------------------------</div>
+<table border="3">
+    <thead>
+        <tr>
+            <td>이름</td>
+            <td>나이</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="person:${pList}">
+            <td th:text="${person.getName()}"></td>
+            <td th:text="${person.getAge()}"></td>
+        <tr/>
+    </tbody>
+</table>
 </body>
 </html>

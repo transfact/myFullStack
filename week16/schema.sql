@@ -1,0 +1,13 @@
+--create table users
+--(
+--    id bigint not null ,
+--    name varchar(255) not null,
+--    address varchar(255) not null,
+--    primary key(id)
+--);
+--
+--insert into users (id,name,address) values
+--(1, '홍길동', '서울시 마포구'),
+--(2,'이몽룡','경기도 안양시'),
+--(3,'성춘향','충청도')
+--delete from users where id = 3;

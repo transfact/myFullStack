@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>회원리스트</h1>
+    <div th:each="user : ${userList}">
+        <p th:text="${user.name}"></p>
+    </div>
+</div>
+<hr />
+
+    <th:block th:if="${info.isLogin == 1}">
+    <form name="signin">
+        <h2>로그인</h2>
+        <div><span> 아이디 </span><input name="signin-id" placeholder="아이디" /></div>
+        <div><span> 패스워드 </span><input name="sigin-pw" placeholder="패스워드" /></div>
+        <button onclick="requestSignIn()">로그인</button>
+    </form>
+    <th:block>
+
+    <th:block th:if="${info.useYn != 1}"> 
+        <form name="signup">
+            <h2>회원가입</h2>
+            <div><span> 아이디 </span><input name="signup-id" placeholder="아이디" /></div>
+            <div><span> 이름 </span><input name="signup-name" placeholder="이름" /></div>
+            <div><span> 패스워드 </span><input name="signup-pw" placeholder="패스워드" /></div>
+            <button onclick="requestSignUp()">회원가입</button>
+        </form>
+
+        <form name="changeInfo">
+            <h2>회원정보 수정</h2>
+            <div><span> 아이디 </span><input name="changeInfo-id" placeholder="아이디" /></div>
+            <div><span> 패스워드 </span><input name="changeInfo-name" placeholder="이름" /></div>
+            <div><span> 패스워드 </span><input name="changeInfo-pw" placeholder="패스워드" /></div>
+            <button onclick="requestChangeInfo()">정보수정</button>
+        </form>
+        <button onclick="requestDel()">회원탈퇴</button>
+        <th:block>
+</body>
+<script></script>
+</html>
